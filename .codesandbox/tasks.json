@@ -11,38 +11,35 @@
   "tasks": {
     "test": {
       "name": "test",
-      "command": "npm run test",
-      "runAtStart": false
+      "command": "npm run test"
     },
     "build": {
       "name": "build",
-      "command": "npm run build",
-      "runAtStart": false
+      "command": "npm run build"
     },
     "dev:webpack": {
       "name": "dev:webpack",
-      "command": "npm run dev:webpack",
-      "runAtStart": false
+      "command": "npm run dev:webpack"
     },
     "build:webpack": {
       "name": "build:webpack",
-      "command": "npm run build:webpack",
-      "runAtStart": false
+      "command": "npm run build:webpack"
     },
     "dev": {
       "name": "dev",
       "command": "npm run dev",
-      "runAtStart": true
+      "runAtStart": true,
+      "preview": {
+        "port": 3000
+      }
     },
     "styles": {
       "name": "styles",
-      "command": "npm run styles",
-      "runAtStart": false
+      "command": "npm run styles"
     },
     "start": {
       "name": "start",
-      "command": "npm run start",
-      "runAtStart": false
+      "command": "npm run start"
     }
   }
 }
