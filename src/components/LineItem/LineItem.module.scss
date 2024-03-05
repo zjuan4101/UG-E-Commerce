@@ -1,32 +1,37 @@
+/* LineItem.module.scss */
+
 .LineItem {
-    width: 100%;
-    display: grid;
-    grid-template-columns: 3vw 15.35vw 5.75vw 5.25vw;
-    padding: 1vmin 0;
-    color: var(--text-light);
-    background-color: var(--white);
-    border-top: .1vmin solid var(--tan-3);
-    font-size: 1.5vw;
-    }
-    
-    .LineItem:last-child {
-    border-bottom: .1vmin solid var(--tan-3);
-    }
-    
-    .LineItem .qty {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    font-size: 1.3vw;
-    }
-    
-    .LineItem .extPrice {
+    padding: 10px;
+    border-bottom: 1px solid #ccc;
+}
+  
+.qty {
     display: flex;
-    justify-content: flex-end;
     align-items: center;
-    font-size: 1.3vw;
-    }
-    
-    .LineItem button {
-    margin: 0;
-    }
+}
+  
+.qty button {
+    margin: 0 5px;
+    padding: 5px 10px;
+    background-color: #bb0000; /* Main color */
+    color: #ffffff; /* White color for text */
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+  
+.qty button:hover {
+    background-color: #a30000; /* Darken main color on hover */
+}
+  
+.extPrice {
+    font-weight: bold;
+    font-size: 14px; /* Adjust font size to make it smaller */
+}
+.itemName {
+    font-size: 12px;
+    text-align: center;
+  }

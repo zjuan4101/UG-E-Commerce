@@ -1,25 +1,23 @@
+/* CategoryList.module.scss */
+
 .CategoryList {
-    color: var(--text-light);
     list-style: none;
     padding: 0;
-    font-size: 1.7vw;
-    }
-    
-    .CategoryList li {
-    padding: .6vmin;
-    text-align: center;
-    border-radius: .5vmin;
-    margin-bottom: .5vmin;
-    }
-    
-    .CategoryList li:hover:not(.active) {
+    margin: 0;
+  }
+  
+  .CategoryList li {
+    padding: 10px;
     cursor: pointer;
-    background-color: var(--orange);
-    color: var(--white);
-    }
-    
-    .CategoryList li.active {
-    color: var(--text-dark);
-    background-color: var(--tan-1);
-    border: .1vmin solid var(--tan-3);
-    }
+    transition: background-color 0.3s ease;
+  }
+  
+  .CategoryList li:hover {
+    background-color: #F1AB3A;
+  }
+  
+  .CategoryList li.active {
+    background-color: #bb0000; /* Main color */
+    color: #ffffff; /* White color for text */
+  }
+  

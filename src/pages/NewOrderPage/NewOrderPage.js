@@ -18,14 +18,23 @@ export default function NewOrderPage({ user, setUser }) {
 
   useEffect(function() {
     async function getItems() {
-      const items = await itemsAPI.getAll();
-      categoriesRef.current = items.reduce((cats, item) => {
-        const cat = item.category.name;
-        return cats.includes(cat) ? cats : [...cats, cat];
-      }, []);
-      setMenuItems(items);
-      setActiveCat(categoriesRef.current[0]);
+      try {
+        const { items, categories } = await itemsAPI.getAll();
+        // Process items and categories here
+        console.log('Items:', items);
+        console.log('Categories:', categories);
+    
+        // Set categories to the ref
+        categoriesRef.current = categories;
+    
+        // Set menu items
+        setMenuItems(items);
+        setActiveCat(categories[0].name); // Assuming categories is an array of objects with a 'name' property
+      } catch (error) {
+        console.error('Error fetching items:', error.message);
+      }
     }
+    
     getItems();
     async function getCart() {
       const cart = await ordersAPI.getCart();
@@ -33,6 +42,8 @@ export default function NewOrderPage({ user, setUser }) {
     }
     getCart();
   }, []);
+   // Empty dependency array, runs after the first render only
+  
   // Providing an empty 'dependency array'
   // results in the effect running after
   // the FIRST render only

@@ -1,39 +1,33 @@
+/* MenuListItem.module.scss */
+
 .MenuListItem {
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 3vmin;
-    padding: 2vmin;
-    color: var(--text-light);
-    background-color: var(--white);
-    border: .1vmin solid var(--tan-3);
-    border-radius: 1vmin;
-    font-size: 4vmin;
-  }
-  
-  .MenuListItem .emoji {
-    height: 8vw;
-    width: 8vw;
-    font-size: 4vw;
-    background-color: var(--tan-1);
-    border: .1vmin solid var(--tan-3);
-    border-radius: 1vmin;
-  }
-  
-  .MenuListItem .buy {
-    display: flex;
-    flex-direction: column;
-  }
-  
-  .MenuListItem .buy span {
-    font-size: 1.7vw;
-    text-align: center;
-    color: var(--text-light);
-  }
-  
-  .MenuListItem .name {
-    font-size: 2vw;
-    text-align: center;
-    color: var(--text-light);
-  }
+  display: flex;
+  flex-direction: column; /* Arrange items in a column */
+  align-items: center;
+  padding: 2vmin; /* Increased padding */
+  border-bottom: 0.1vmin solid #ccc; /* Add a border bottom for separation */
+}
+
+.emoji {
+  font-size: 3.5vmin; /* Adjusted emoji font size */
+  margin-bottom: 2vmin; /* Increased margin below emoji */
+}
+
+.name {
+  font-size: 3vmin; /* Adjusted name font size */
+  margin-bottom: 1.5vmin; /* Increased margin below name */
+}
+
+.buy {
+  display: flex;
+  align-items: center;
+}
+
+.buy span {
+  font-size: 3vmin; /* Adjusted price font size */
+  margin-right: 2vmin; /* Increased margin to separate price from button */
+}
+
+button.btn-sm {
+  font-size: 2.5vmin; /* Adjusted button font size */
+}

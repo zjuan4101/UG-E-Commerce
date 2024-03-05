@@ -1,0 +1,53 @@
+// SignUpForm.module.scss
+
+.form-container {
+    padding: 3vmin;
+    background-color: #FBF9F6; /* Light tan-1 color */
+    border: 1px solid #D3C1AE; /* Tan-3 color */
+    border-radius: 1vmin;
+  }
+  
+  label {
+    font-size: 2.5vmin;
+    margin-bottom: 1vmin;
+    display: block;
+  }
+  
+  input[type="text"],
+  input[type="email"],
+  input[type="password"] {
+    padding: 1.5vmin;
+    font-size: 2.5vmin;
+    border: 1px solid #D3C1AE; /* Tan-3 color */
+    border-radius: 0.5vmin;
+    margin-bottom: 1vmin;
+    width: 100%;
+  }
+  
+  input[type="text"]:focus,
+  input[type="email"]:focus,
+  input[type="password"]:focus {
+    border-color: #F1AB3A; /* Orange color on focus */
+  }
+  
+  button[type="submit"] {
+    padding: 1.5vmin 3vmin;
+    font-size: 2.5vmin;
+    background-color: #BB0000; /* Dark red color */
+    color: #FFFFFF; /* White color */
+    border: none;
+    border-radius: 0.5vmin;
+    cursor: pointer;
+  }
+  
+  button[type="submit"]:disabled {
+    background-color: #F1AB3A; /* Tan-3 color */
+    cursor: not-allowed;
+  }
+  
+  .error-message {
+    color: #FFA500; /* Orange color for error messages */
+    font-size: 2.5vmin;
+    text-align: center;
+  }
+  

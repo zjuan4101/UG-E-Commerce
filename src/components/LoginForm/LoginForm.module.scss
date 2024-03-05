@@ -1,0 +1,47 @@
+.form-container {
+    width: 35vmin; /* Reduce width for a slightly smaller form */
+    margin: 0 auto;
+    padding: 3vmin; /* Reduce padding for a smaller form */
+    background-color: #fff;
+    border-radius: 2vmin;
+    box-shadow: 0 0.8vmin 1.6vmin rgba(0, 0, 0, 0.1); /* Slightly reduce shadow */
+}
+  
+.form-container form {
+    display: flex;
+    flex-direction: column;
+}
+  
+.form-container label {
+    margin-bottom: 1.2vmin; /* Reduce margin for labels */
+    font-weight: bold;
+}
+  
+.form-container input[type="text"],
+.form-container input[type="password"] {
+    padding: 1.2vmin; /* Reduce padding for input fields */
+    margin-bottom: 2.4vmin; /* Reduce margin for input fields */
+    border: 0.1vmin solid #ccc;
+    border-radius: 0.8vmin; /* Adjust border radius for input fields */
+    font-size: 3vmin; /* Reduce font size for input fields */
+}
+  
+.form-container button {
+    padding: 1.6vmin 0; /* Adjust padding for buttons */
+    border: none;
+    border-radius: 0.8vmin;
+    background-color: #F1AB3A;
+    color: #fff;
+    font-size: 3vmin; /* Reduce font size for buttons */
+    cursor: pointer;
+}
+  
+.form-container button:hover {
+    background-color: #F1AB3A;
+}
+  
+.error-message {
+    margin-top: 1.2vmin; /* Reduce margin-top for error messages */
+    font-size: 3vmin; /* Reduce font size for error messages */
+    color: #ff0000;
+}

@@ -13,3 +13,14 @@
     color: var(--text-light);
     cursor: pointer;
   }
+  h3 {
+    font-size: 4vmin; /* Adjust font size */
+    color: #333; /* Set text color */
+    margin-bottom: 2vmin; /* Add margin at the bottom */
+    text-transform: uppercase; /* Convert text to uppercase */
+    cursor: pointer; /* Change cursor to pointer on hover */
+  }
+
+  h3:hover {
+    color: #F1AB3A; /* Change text color on hover */
+  }

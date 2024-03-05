@@ -1,20 +1,17 @@
 import styles from './CategoryList.module.scss';
 
 export default function CategoryList({ categories, activeCat, setActiveCat }) {
-  const cats = categories.map(cat =>
-    <li
-      key={cat}
-      className={cat === activeCat ? styles.active : ''}
-      // FYI, the below will also work, but will give a warning
-      // className={cat === activeCat && 'active'}
-      onClick={() => setActiveCat(cat)}
-    >
-      {cat}
-    </li>
-  );
   return (
     <ul className={styles.CategoryList}>
-      {cats}
+      {categories.map(category => (
+        <li
+          key={category._id} // Use a unique identifier for the key
+          className={category === activeCat ? styles.active : ''}
+          onClick={() => setActiveCat(category)}
+        >
+          {category.name}
+        </li>
+      ))}
     </ul>
   );
 }
