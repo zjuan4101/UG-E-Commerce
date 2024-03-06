@@ -20,6 +20,14 @@
 }
 
 // global.scss
+@keyframes gradientAnimation {
+  0% {
+      background-position: 0% 50%;
+  }
+  100% {
+      background-position: 100% 50%;
+  }
+}
 
 body {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
@@ -27,7 +35,9 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: var(--dark-gray);
+  background-image: linear-gradient(to bottom right, var(--main-color) 30%, var(--dark-gray) 70%, var(--secondary-color));
+  background-size: 400% 400%;
+  animation: gradientAnimation 3.5s ease infinite alternate;
   padding: 2vmin;
   height: 100vh;
   color: var(--secondary-color);
@@ -139,9 +149,15 @@ a.button {
   cursor: pointer;
 }
 
+button,
+a.button:hover {
+  background-color: #FF6347;
+}
+
 button.btn-sm {
   font-size: 1.5vmin;
   padding: 0.6vmin 0.8vmin;
+  background-color: #F1AB3A;
 }
 
 button.btn-xs {

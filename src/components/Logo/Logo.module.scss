@@ -1,12 +1,23 @@
 .Logo {
+  font-size: 2em; /* Adjust the font size as needed */
+  font-weight: bold; /* Make the text bold */
+  color: transparent; /* Set the text color to transparent */
+  background-image: linear-gradient(to right, #bb0000, #bfb5af, #010101); /* Define the gradient */
+  -webkit-background-clip: text; /* Apply background-clip property for WebKit browsers */
+  background-clip: text; /* Apply background-clip property for other browsers */
+  display: inline-block; /* Ensure text flows inline */
+}
+
+.Logo > div {
   display: flex;
+  flex-direction: column;
   align-items: center;
 }
 
 .Logo img {
-  width: 150px; /* Adjust the width as needed */
-  height: 150px; /* Let the height adjust automatically */
-  border-radius: 50%; /* Display the image as a circle */
-  object-fit: cover; /* Ensure the image covers the entire circle */
+  width: 200px; /* Adjust the width as needed */
+  height: 200px;
+  object-fit: cover; /* Adjust the height as needed */
+  border-radius: 50%; /* Make the image circular */
   margin-right: 10px; /* Adjust the margin as needed */
 }

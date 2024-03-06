@@ -26,7 +26,7 @@ function CategoryList(_ref) {
     key: category._id // Use a unique identifier for the key
     ,
     className: category === activeCat ? _CategoryList_module_scss__WEBPACK_IMPORTED_MODULE_0__["default"].active : '',
-    onClick: () => setActiveCat(category)
+    onClick: () => setActiveCat(category.name)
   }, category.name)));
 }
 
@@ -97,8 +97,6 @@ function LineItem(_ref) {
 /* harmony import */ var _utilities_users_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../utilities/users-service */ "./src/utilities/users-service.js");
 /* harmony import */ var _LoginForm_module_scss__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./LoginForm.module.scss */ "./src/components/LoginForm/LoginForm.module.scss");
 /* provided dependency */ var React = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
-function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
 function _defineProperty(obj, key, value) { key = _toPropertyKey(key); if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
@@ -123,24 +121,18 @@ function LoginForm(_ref) {
     }));
     setError('');
   }
-  function handleSubmit(_x) {
-    return _handleSubmit.apply(this, arguments);
-  }
-  function _handleSubmit() {
-    _handleSubmit = _asyncToGenerator(function* (evt) {
-      // Prevent form from being submitted to the server
-      evt.preventDefault();
-      try {
-        // The promise returned by the signUp service method
-        // will resolve to the user object included in the
-        // payload of the JSON Web Token (JWT)
-        const user = yield _utilities_users_service__WEBPACK_IMPORTED_MODULE_2__.login(credentials);
-        setUser(user);
-      } catch (_unused) {
-        setError('Log In Failed - Try Again');
-      }
-    });
-    return _handleSubmit.apply(this, arguments);
+  async function handleSubmit(evt) {
+    // Prevent form from being submitted to the server
+    evt.preventDefault();
+    try {
+      // The promise returned by the signUp service method
+      // will resolve to the user object included in the
+      // payload of the JSON Web Token (JWT)
+      const user = await _utilities_users_service__WEBPACK_IMPORTED_MODULE_2__.login(credentials);
+      setUser(user);
+    } catch (_unused) {
+      setError('Log In Failed - Try Again');
+    }
   }
   return /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("div", {
     className: _LoginForm_module_scss__WEBPACK_IMPORTED_MODULE_1__["default"]['form-container']
@@ -187,8 +179,8 @@ function Logo() {
   }, /*#__PURE__*/React.createElement("div", {
     className: _Logo_module_scss__WEBPACK_IMPORTED_MODULE_0__["default"].Logo
   }, /*#__PURE__*/React.createElement("img", {
-    src: "/img/UGfinal.png"
-  })));
+    src: "/img/UGfinaltransparent.png"
+  }), /*#__PURE__*/React.createElement("div", null, "UNKNOWN"), /*#__PURE__*/React.createElement("div", null, "GUARDIANS")));
 }
 
 /***/ }),
@@ -313,7 +305,7 @@ function OrderDetail(_ref) {
     className: _OrderDetail_module_scss__WEBPACK_IMPORTED_MODULE_0__["default"].right
   }, "$", order.orderTotal.toFixed(2)))) : /*#__PURE__*/React.createElement("div", {
     className: _OrderDetail_module_scss__WEBPACK_IMPORTED_MODULE_0__["default"].hungry
-  }, "Hungry?")));
+  }, "We the best Esports team!")));
 }
 
 /***/ }),
@@ -405,52 +397,43 @@ function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { va
 function _defineProperty(obj, key, value) { key = _toPropertyKey(key); if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 function _toPropertyKey(arg) { var key = _toPrimitive(arg, "string"); return typeof key === "symbol" ? key : String(key); }
 function _toPrimitive(input, hint) { if (typeof input !== "object" || input === null) return input; var prim = input[Symbol.toPrimitive]; if (prim !== undefined) { var res = prim.call(input, hint || "default"); if (typeof res !== "object") return res; throw new TypeError("@@toPrimitive must return a primitive value."); } return (hint === "string" ? String : Number)(input); }
-function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
-function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
 
 class SignUpForm extends react__WEBPACK_IMPORTED_MODULE_0__.Component {
   constructor() {
-    var _this;
     super(...arguments);
-    _this = this;
-    this.state = {
+    _defineProperty(this, "state", {
       name: '',
       email: '',
       password: '',
       confirm: '',
       error: ''
-    };
-    this.handleChange = evt => {
+    });
+    _defineProperty(this, "handleChange", evt => {
       this.setState({
         [evt.target.name]: evt.target.value,
         error: ''
       });
-    };
-    this.handleSubmit = /*#__PURE__*/function () {
-      var _ref = _asyncToGenerator(function* (evt) {
-        evt.preventDefault();
-        try {
-          const formData = _objectSpread({}, _this.state);
-          delete formData.confirm;
-          delete formData.error;
-          // The promise returned by the signUp service method
-          // will resolve to the user object included in the
-          // payload of the JSON Web Token (JWT)
-          const user = yield (0,_utilities_users_service__WEBPACK_IMPORTED_MODULE_1__.signUp)(formData);
-          // Baby step
-          _this.props.setUser(user);
-        } catch (_unused) {
-          // An error happened on the server
-          _this.setState({
-            error: 'Sign Up Failed - Try Again'
-          });
-        }
-      });
-      return function (_x) {
-        return _ref.apply(this, arguments);
-      };
-    }();
+    });
+    _defineProperty(this, "handleSubmit", async evt => {
+      evt.preventDefault();
+      try {
+        const formData = _objectSpread({}, this.state);
+        delete formData.confirm;
+        delete formData.error;
+        // The promise returned by the signUp service method
+        // will resolve to the user object included in the
+        // payload of the JSON Web Token (JWT)
+        const user = await (0,_utilities_users_service__WEBPACK_IMPORTED_MODULE_1__.signUp)(formData);
+        // Baby step
+        this.props.setUser(user);
+      } catch (_unused) {
+        // An error happened on the server
+        this.setState({
+          error: 'Sign Up Failed - Try Again'
+        });
+      }
+    });
   }
   // We must override the render method
   // The render method is the equivalent to a function-based component
@@ -612,8 +595,6 @@ function AuthPage(_ref) {
 /* harmony import */ var _components_OrderDetail_OrderDetail__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../components/OrderDetail/OrderDetail */ "./src/components/OrderDetail/OrderDetail.js");
 /* harmony import */ var _components_UserLogOut_UserLogOut__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../components/UserLogOut/UserLogOut */ "./src/components/UserLogOut/UserLogOut.js");
 /* provided dependency */ var React = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
-function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
 
 
@@ -632,101 +613,72 @@ function NewOrderPage(_ref) {
   const [menuItems, setMenuItems] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]);
   const [activeCat, setActiveCat] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)('');
   const [cart, setCart] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(null);
+  const [showOrderDetail, setShowOrderDetail] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false); // State variable for toggling OrderDetail visibility
   const categoriesRef = (0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)([]);
   const navigate = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_7__.useNavigate)();
-  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
-    function getItems() {
-      return _getItems.apply(this, arguments);
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
+    async function getItems() {
+      try {
+        const {
+          items,
+          categories
+        } = await _utilities_items_api__WEBPACK_IMPORTED_MODULE_8__.getAll();
+        categoriesRef.current = categories;
+        setMenuItems(items);
+        setActiveCat(categories[0].name);
+      } catch (error) {
+        console.error('Error fetching items:', error.message);
+      }
     }
-    function _getItems() {
-      _getItems = _asyncToGenerator(function* () {
-        try {
-          const {
-            items,
-            categories
-          } = yield _utilities_items_api__WEBPACK_IMPORTED_MODULE_8__.getAll();
-          // Process items and categories here
-          console.log('Items:', items);
-          console.log('Categories:', categories);
-
-          // Set categories to the ref
-          categoriesRef.current = categories;
-
-          // Set menu items
-          setMenuItems(items);
-          setActiveCat(categories[0].name); // Assuming categories is an array of objects with a 'name' property
-        } catch (error) {
-          console.error('Error fetching items:', error.message);
-        }
-      });
-      return _getItems.apply(this, arguments);
+    async function getCart() {
+      const cart = await _utilities_orders_api__WEBPACK_IMPORTED_MODULE_9__.getCart();
+      setCart(cart);
     }
     getItems();
-    function getCart() {
-      return _getCart.apply(this, arguments);
-    }
-    function _getCart() {
-      _getCart = _asyncToGenerator(function* () {
-        const cart = yield _utilities_orders_api__WEBPACK_IMPORTED_MODULE_9__.getCart();
-        setCart(cart);
-      });
-      return _getCart.apply(this, arguments);
-    }
     getCart();
   }, []);
-  // Empty dependency array, runs after the first render only
+  async function handleAddToOrder(itemId) {
+    const updatedCart = await _utilities_orders_api__WEBPACK_IMPORTED_MODULE_9__.addItemToCart(itemId);
+    setCart(updatedCart);
+  }
+  async function handleChangeQty(itemId, newQty) {
+    const updatedCart = await _utilities_orders_api__WEBPACK_IMPORTED_MODULE_9__.setItemQtyInCart(itemId, newQty);
+    setCart(updatedCart);
+  }
+  async function handleCheckout() {
+    await _utilities_orders_api__WEBPACK_IMPORTED_MODULE_9__.checkout();
+    navigate('/orders');
+  }
 
-  // Providing an empty 'dependency array'
-  // results in the effect running after
-  // the FIRST render only
-
-  /*-- Event Handlers --*/
-  function handleAddToOrder(_x) {
-    return _handleAddToOrder.apply(this, arguments);
-  }
-  function _handleAddToOrder() {
-    _handleAddToOrder = _asyncToGenerator(function* (itemId) {
-      const updatedCart = yield _utilities_orders_api__WEBPACK_IMPORTED_MODULE_9__.addItemToCart(itemId);
-      setCart(updatedCart);
-    });
-    return _handleAddToOrder.apply(this, arguments);
-  }
-  function handleChangeQty(_x2, _x3) {
-    return _handleChangeQty.apply(this, arguments);
-  }
-  function _handleChangeQty() {
-    _handleChangeQty = _asyncToGenerator(function* (itemId, newQty) {
-      const updatedCart = yield _utilities_orders_api__WEBPACK_IMPORTED_MODULE_9__.setItemQtyInCart(itemId, newQty);
-      setCart(updatedCart);
-    });
-    return _handleChangeQty.apply(this, arguments);
-  }
-  function handleCheckout() {
-    return _handleCheckout.apply(this, arguments);
-  }
-  function _handleCheckout() {
-    _handleCheckout = _asyncToGenerator(function* () {
-      yield _utilities_orders_api__WEBPACK_IMPORTED_MODULE_9__.checkout();
-      navigate('/orders');
-    });
-    return _handleCheckout.apply(this, arguments);
-  }
+  // Function to toggle OrderDetail visibility
+  const toggleOrderDetail = () => {
+    setShowOrderDetail(prevState => !prevState);
+  };
   return /*#__PURE__*/React.createElement("main", {
     className: _NewOrderPage_module_scss__WEBPACK_IMPORTED_MODULE_1__["default"].NewOrderPage
-  }, /*#__PURE__*/React.createElement("aside", null, /*#__PURE__*/React.createElement(_components_Logo_Logo__WEBPACK_IMPORTED_MODULE_2__["default"], null), /*#__PURE__*/React.createElement(_components_CategoryList_CategoryList__WEBPACK_IMPORTED_MODULE_4__["default"], {
+  }, /*#__PURE__*/React.createElement("aside", null, /*#__PURE__*/React.createElement(_components_Logo_Logo__WEBPACK_IMPORTED_MODULE_2__["default"], null), /*#__PURE__*/React.createElement("div", {
+    className: _NewOrderPage_module_scss__WEBPACK_IMPORTED_MODULE_1__["default"].CategoryListContainer
+  }, /*#__PURE__*/React.createElement(_components_CategoryList_CategoryList__WEBPACK_IMPORTED_MODULE_4__["default"], {
     categories: categoriesRef.current,
     cart: setCart,
     setActiveCat: setActiveCat
-  }), /*#__PURE__*/React.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_10__.Link, {
+  })), /*#__PURE__*/React.createElement("div", {
+    className: _NewOrderPage_module_scss__WEBPACK_IMPORTED_MODULE_1__["default"].LinkContainer
+  }, /*#__PURE__*/React.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_10__.Link, {
     to: "/orders",
     className: "button btn-sm"
-  }, "PREVIOUS ORDERS"), /*#__PURE__*/React.createElement(_components_UserLogOut_UserLogOut__WEBPACK_IMPORTED_MODULE_6__["default"], {
+  }, "PREVIOUS ORDERS")), /*#__PURE__*/React.createElement("div", {
+    className: _NewOrderPage_module_scss__WEBPACK_IMPORTED_MODULE_1__["default"].UserLogOutContainer
+  }, /*#__PURE__*/React.createElement(_components_UserLogOut_UserLogOut__WEBPACK_IMPORTED_MODULE_6__["default"], {
     user: user,
     setUser: setUser
-  })), /*#__PURE__*/React.createElement(_components_MenuList_MenuList__WEBPACK_IMPORTED_MODULE_3__["default"], {
-    menuItems: menuItems.filter(item => item.category.name === activeCat),
+  })), /*#__PURE__*/React.createElement("button", {
+    onClick: toggleOrderDetail,
+    className: "button btn-sm ".concat(_NewOrderPage_module_scss__WEBPACK_IMPORTED_MODULE_1__["default"].toggleButton)
+  }, showOrderDetail ? "Hide Cart" : "Show Cart")), /*#__PURE__*/React.createElement(_components_MenuList_MenuList__WEBPACK_IMPORTED_MODULE_3__["default"], {
+    menuItems: menuItems.filter(item => item.category.find(cat => cat.name === activeCat)),
     handleAddToOrder: handleAddToOrder
-  }), /*#__PURE__*/React.createElement(_components_OrderDetail_OrderDetail__WEBPACK_IMPORTED_MODULE_5__["default"], {
+  }), showOrderDetail && /*#__PURE__*/React.createElement(_components_OrderDetail_OrderDetail__WEBPACK_IMPORTED_MODULE_5__["default"], {
     order: cart,
     handleChangeQty: handleChangeQty,
     handleCheckout: handleCheckout
@@ -754,8 +706,6 @@ function NewOrderPage(_ref) {
 /* harmony import */ var _components_OrderList_OrderList__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../components/OrderList/OrderList */ "./src/components/OrderList/OrderList.js");
 /* harmony import */ var _components_OrderDetail_OrderDetail__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../components/OrderDetail/OrderDetail */ "./src/components/OrderDetail/OrderDetail.js");
 /* provided dependency */ var React = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
-function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
 
 
@@ -776,17 +726,11 @@ function OrderHistoryPage(_ref) {
   /*--- Side Effects --- */
   (0,react__WEBPACK_IMPORTED_MODULE_1__.useEffect)(function () {
     // Load previous orders (paid)
-    function fetchOrderHistory() {
-      return _fetchOrderHistory.apply(this, arguments);
-    }
-    function _fetchOrderHistory() {
-      _fetchOrderHistory = _asyncToGenerator(function* () {
-        const orders = yield _utilities_orders_api__WEBPACK_IMPORTED_MODULE_6__.getOrderHistory();
-        setOrders(orders);
-        // If no orders, activeOrder will be set to null below
-        setActiveOrder(orders[0] || null);
-      });
-      return _fetchOrderHistory.apply(this, arguments);
+    async function fetchOrderHistory() {
+      const orders = await _utilities_orders_api__WEBPACK_IMPORTED_MODULE_6__.getOrderHistory();
+      setOrders(orders);
+      // If no orders, activeOrder will be set to null below
+      setActiveOrder(orders[0] || null);
     }
     fetchOrderHistory();
   }, []);
@@ -983,43 +927,33 @@ function getOrderHistory() {
 /* harmony export */   "default": () => (/* binding */ sendRequest)
 /* harmony export */ });
 /* harmony import */ var _users_service__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./users-service */ "./src/utilities/users-service.js");
-function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
-function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
-function sendRequest(_x) {
-  return _sendRequest.apply(this, arguments);
-}
-function _sendRequest() {
-  _sendRequest = _asyncToGenerator(function (url) {
-    let method = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 'GET';
-    let payload = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : null;
-    return function* () {
-      // Fetch takes an optional options object as the 2nd argument
-      // used to include a data payload, set headers, etc.
-      const options = {
-        method
-      };
-      if (payload) {
-        options.headers = {
-          'Content-Type': 'application/json'
-        };
-        options.body = JSON.stringify(payload);
-      }
-      const token = (0,_users_service__WEBPACK_IMPORTED_MODULE_0__.getToken)();
-      if (token) {
-        // Ensure headers object exists
-        options.headers = options.headers || {};
-        // Add token to an Authorization header
-        // Prefacing with 'Bearer' is recommended in the HTTP specification
-        options.headers.Authorization = "Bearer ".concat(token);
-      }
-      const res = yield fetch(url, options);
-      // res.ok will be false if the status code set to 4xx in the controller action
-      if (res.ok) return res.json();
-      throw new Error('Bad Request');
-    }();
-  });
-  return _sendRequest.apply(this, arguments);
+async function sendRequest(url) {
+  let method = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 'GET';
+  let payload = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : null;
+  // Fetch takes an optional options object as the 2nd argument
+  // used to include a data payload, set headers, etc.
+  const options = {
+    method
+  };
+  if (payload) {
+    options.headers = {
+      'Content-Type': 'application/json'
+    };
+    options.body = JSON.stringify(payload);
+  }
+  const token = (0,_users_service__WEBPACK_IMPORTED_MODULE_0__.getToken)();
+  if (token) {
+    // Ensure headers object exists
+    options.headers = options.headers || {};
+    // Add token to an Authorization header
+    // Prefacing with 'Bearer' is recommended in the HTTP specification
+    options.headers.Authorization = "Bearer ".concat(token);
+  }
+  const res = await fetch(url, options);
+  // res.ok will be false if the status code set to 4xx in the controller action
+  if (res.ok) return res.json();
+  throw new Error('Bad Request');
 }
 
 /***/ }),
@@ -1060,35 +994,21 @@ function login(credentials) {
 /* harmony export */   signUp: () => (/* binding */ signUp)
 /* harmony export */ });
 /* harmony import */ var _users_api__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./users-api */ "./src/utilities/users-api.js");
-function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
-function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
-function signUp(_x) {
-  return _signUp.apply(this, arguments);
+async function signUp(userData) {
+  // Delete the network request code to the
+  // users-api.js module which will ultimately
+  // return the JWT
+  const token = await _users_api__WEBPACK_IMPORTED_MODULE_0__.signUp(userData);
+  // Persist the token to localStorage
+  localStorage.setItem('token', token);
+  return getUser();
 }
-function _signUp() {
-  _signUp = _asyncToGenerator(function* (userData) {
-    // Delete the network request code to the
-    // users-api.js module which will ultimately
-    // return the JWT
-    const token = yield _users_api__WEBPACK_IMPORTED_MODULE_0__.signUp(userData);
-    // Persist the token to localStorage
-    localStorage.setItem('token', token);
-    return getUser();
-  });
-  return _signUp.apply(this, arguments);
-}
-function login(_x2) {
-  return _login.apply(this, arguments);
-}
-function _login() {
-  _login = _asyncToGenerator(function* (credentials) {
-    const token = yield _users_api__WEBPACK_IMPORTED_MODULE_0__.login(credentials);
-    // Persist the token to localStorage
-    localStorage.setItem('token', token);
-    return getUser();
-  });
-  return _login.apply(this, arguments);
+async function login(credentials) {
+  const token = await _users_api__WEBPACK_IMPORTED_MODULE_0__.login(credentials);
+  // Persist the token to localStorage
+  localStorage.setItem('token', token);
+  return getUser();
 }
 function getToken() {
   const token = localStorage.getItem('token');
@@ -1131,7 +1051,17 @@ function logOut() {
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default()((_node_modules_css_loader_dist_runtime_sourceMaps_js__WEBPACK_IMPORTED_MODULE_0___default()));
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, `/* CategoryList.module.scss */
+___CSS_LOADER_EXPORT___.push([module.id, `@keyframes o6CQ1MRMxq0qpw5dU6i4 {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  } /* Scale up */
+  100% {
+    transform: scale(1);
+  }
+}
 .l8hJyaPvo9smd6LiNqWK {
   list-style: none;
   padding: 0;
@@ -1139,22 +1069,27 @@ ___CSS_LOADER_EXPORT___.push([module.id, `/* CategoryList.module.scss */
 }
 
 .l8hJyaPvo9smd6LiNqWK li {
-  padding: 10px;
+  padding: 8px 10px; /* Adjust padding for top/bottom and left/right */
   cursor: pointer;
   transition: background-color 0.3s ease;
+  font-size: 2.2em; /* Set the font size to make it a little bigger */
+  margin-bottom: 8px; /* Add a tiny bit of space between each list item */
 }
 
 .l8hJyaPvo9smd6LiNqWK li:hover {
   background-color: #F1AB3A;
+  color: #bb0000;
+  animation: o6CQ1MRMxq0qpw5dU6i4 1.5s infinite;
 }
 
 .l8hJyaPvo9smd6LiNqWK li._scckhAN2KPE1u73kR14 {
   background-color: #bb0000; /* Main color */
   color: #ffffff; /* White color for text */
-}`, "",{"version":3,"sources":["webpack://./src/components/CategoryList/CategoryList.module.scss"],"names":[],"mappings":"AAAA,6BAAA;AAEA;EACI,gBAAA;EACA,UAAA;EACA,SAAA;AAAJ;;AAGE;EACE,aAAA;EACA,eAAA;EACA,sCAAA;AAAJ;;AAGE;EACE,yBAAA;AAAJ;;AAGE;EACE,yBAAA,EAAA,eAAA;EACA,cAAA,EAAA,yBAAA;AAAJ","sourcesContent":["/* CategoryList.module.scss */\n\n.CategoryList {\n    list-style: none;\n    padding: 0;\n    margin: 0;\n  }\n  \n  .CategoryList li {\n    padding: 10px;\n    cursor: pointer;\n    transition: background-color 0.3s ease;\n  }\n  \n  .CategoryList li:hover {\n    background-color: #F1AB3A;\n  }\n  \n  .CategoryList li.active {\n    background-color: #bb0000; /* Main color */\n    color: #ffffff; /* White color for text */\n  }\n  "],"sourceRoot":""}]);
+}`, "",{"version":3,"sources":["webpack://./src/components/CategoryList/CategoryList.module.scss"],"names":[],"mappings":"AAAA;EACE;IAAK,mBAAA;EAEL;EADA;IAAM,sBAAA;EAIN,EAJgC,aAAA;EAChC;IAAO,mBAAA;EAMP;AACF;AAJA;EACE,gBAAA;EACA,UAAA;EACA,SAAA;AAMF;;AAHA;EACE,iBAAA,EAAA,iDAAA;EACA,eAAA;EACA,sCAAA;EACA,gBAAA,EAAA,iDAAA;EACA,kBAAA,EAAA,mDAAA;AAMF;;AAHA;EACE,yBAAA;EACA,cAAA;EACA,6CAAA;AAMF;;AAHA;EACE,yBAAA,EAAA,eAAA;EACA,cAAA,EAAA,yBAAA;AAMF","sourcesContent":["@keyframes breathe {\n  0% { transform: scale(1); }\n  50% { transform: scale(1.05); } /* Scale up */\n  100% { transform: scale(1); }\n}\n\n.CategoryList {\n  list-style: none;\n  padding: 0;\n  margin: 0;\n}\n\n.CategoryList li {\n  padding: 8px 10px; /* Adjust padding for top/bottom and left/right */\n  cursor: pointer;\n  transition: background-color 0.3s ease;\n  font-size: 2.2em; /* Set the font size to make it a little bigger */\n  margin-bottom: 8px; /* Add a tiny bit of space between each list item */\n}\n\n.CategoryList li:hover {\n  background-color: #F1AB3A;\n  color:#bb0000;\n  animation: breathe 1.5s infinite;\n}\n\n.CategoryList li.active {\n  background-color: #bb0000; /* Main color */\n  color: #ffffff; /* White color for text */\n}\n"],"sourceRoot":""}]);
 // Exports
 ___CSS_LOADER_EXPORT___.locals = {
 	"CategoryList": `l8hJyaPvo9smd6LiNqWK`,
+	"breathe": `o6CQ1MRMxq0qpw5dU6i4`,
 	"active": `_scckhAN2KPE1u73kR14`
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
@@ -1323,18 +1258,29 @@ ___CSS_LOADER_EXPORT___.locals = {
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default()((_node_modules_css_loader_dist_runtime_sourceMaps_js__WEBPACK_IMPORTED_MODULE_0___default()));
 // Module
 ___CSS_LOADER_EXPORT___.push([module.id, `.EDeinQzfS2N2rVW_Z1GP {
+  font-size: 2em; /* Adjust the font size as needed */
+  font-weight: bold; /* Make the text bold */
+  color: transparent; /* Set the text color to transparent */
+  background-image: linear-gradient(to right, #bb0000, #bfb5af, #010101); /* Define the gradient */
+  -webkit-background-clip: text; /* Apply background-clip property for WebKit browsers */
+  background-clip: text; /* Apply background-clip property for other browsers */
+  display: inline-block; /* Ensure text flows inline */
+}
+
+.EDeinQzfS2N2rVW_Z1GP > div {
   display: flex;
+  flex-direction: column;
   align-items: center;
 }
 
 .EDeinQzfS2N2rVW_Z1GP img {
-  width: 150px; /* Adjust the width as needed */
-  height: 150px; /* Let the height adjust automatically */
-  border-radius: 50%; /* Display the image as a circle */
+  width: 200px; /* Adjust the width as needed */
+  height: 200px;
   -o-object-fit: cover;
-  object-fit: cover; /* Ensure the image covers the entire circle */
+  object-fit: cover; /* Adjust the height as needed */
+  border-radius: 50%; /* Make the image circular */
   margin-right: 10px; /* Adjust the margin as needed */
-}`, "",{"version":3,"sources":["webpack://./src/components/Logo/Logo.module.scss"],"names":[],"mappings":"AAAA;EACE,aAAA;EACA,mBAAA;AACF;;AAEA;EACE,YAAA,EAAA,+BAAA;EACA,aAAA,EAAA,wCAAA;EACA,kBAAA,EAAA,kCAAA;EACA,oBAAA;EACG,iBAAA,EAAA,8CAAA;EACH,kBAAA,EAAA,gCAAA;AACF","sourcesContent":[".Logo {\n  display: flex;\n  align-items: center;\n}\n\n.Logo img {\n  width: 150px; /* Adjust the width as needed */\n  height: 150px; /* Let the height adjust automatically */\n  border-radius: 50%; /* Display the image as a circle */\n  -o-object-fit: cover;\n     object-fit: cover; /* Ensure the image covers the entire circle */\n  margin-right: 10px; /* Adjust the margin as needed */\n}\n"],"sourceRoot":""}]);
+}`, "",{"version":3,"sources":["webpack://./src/components/Logo/Logo.module.scss"],"names":[],"mappings":"AAAA;EACE,cAAA,EAAA,mCAAA;EACA,iBAAA,EAAA,uBAAA;EACA,kBAAA,EAAA,sCAAA;EACA,sEAAA,EAAA,wBAAA;EACA,6BAAA,EAAA,uDAAA;EACA,qBAAA,EAAA,sDAAA;EACA,qBAAA,EAAA,6BAAA;AACF;;AAEA;EACE,aAAA;EACA,sBAAA;EACA,mBAAA;AACF;;AAEA;EACE,YAAA,EAAA,+BAAA;EACA,aAAA;EACA,oBAAA;EACG,iBAAA,EAAA,gCAAA;EACH,kBAAA,EAAA,4BAAA;EACA,kBAAA,EAAA,gCAAA;AACF","sourcesContent":[".Logo {\n  font-size: 2em; /* Adjust the font size as needed */\n  font-weight: bold; /* Make the text bold */\n  color: transparent; /* Set the text color to transparent */\n  background-image: linear-gradient(to right, #bb0000, #bfb5af, #010101); /* Define the gradient */\n  -webkit-background-clip: text; /* Apply background-clip property for WebKit browsers */\n  background-clip: text; /* Apply background-clip property for other browsers */\n  display: inline-block; /* Ensure text flows inline */\n}\n\n.Logo > div {\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n}\n\n.Logo img {\n  width: 200px; /* Adjust the width as needed */\n  height: 200px;\n  -o-object-fit: cover;\n     object-fit: cover; /* Adjust the height as needed */\n  border-radius: 50%; /* Make the image circular */\n  margin-right: 10px; /* Adjust the margin as needed */\n}\n"],"sourceRoot":""}]);
 // Exports
 ___CSS_LOADER_EXPORT___.locals = {
 	"Logo": `EDeinQzfS2N2rVW_Z1GP`
@@ -1502,7 +1448,19 @@ ___CSS_LOADER_EXPORT___.push([module.id, `.cPR75kdAXDGVxib0PszB {
   text-align: center;
   font-size: 4vmin;
   color: #888;
-}`, "",{"version":3,"sources":["webpack://./src/components/OrderDetail/OrderDetail.module.scss"],"names":[],"mappings":"AAEA;EACE,cAAA;EACA,sBAAA;EACA,oBAAA;EACA,sBAAA;EACA,4CAAA,EAAA,0BAAA;AADF;;AAIA;EACE,aAAA;EACA,8BAAA;EACA,mBAAA;EACA,gBAAA;EACA,oBAAA;AADF;;AAIA;EACE,gBAAA,EAAA,wCAAA;EACA,kBAAA,EAAA,sCAAA;AADF;;AAIA;EACE,aAAA;EACA,8BAAA;EACA,mBAAA;EACA,kBAAA;EACA,iBAAA;AADF;;AAIA;EACE,iBAAA;EACA,OAAA;AADF;;AAIA;EACE,kBAAA;EACA,gBAAA;EACA,WAAA;AADF","sourcesContent":["// OrderDetail.module.scss\n\n.OrderDetail {\n  padding: 2vmin;\n  border: 1px solid #ccc;\n  border-radius: 1vmin;\n  background-color: #fff;\n  box-shadow: 0 2vmin 4vmin rgba(0, 0, 0, 0.1); /* Using vmin for shadow */\n}\n\n.sectionHeading {\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n  font-size: 4vmin;\n  margin-bottom: 2vmin;\n}\n\n.lineItemContainer {\n  overflow-y: auto; /* Scrollable container for line items */\n  max-height: 60vmin; /* Limiting the height for scrolling */\n}\n\n.total {\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n  font-size: 3.5vmin;\n  margin-top: 2vmin;\n}\n\n.right {\n  text-align: right;\n  flex: 1;\n}\n\n.hungry {\n  text-align: center;\n  font-size: 4vmin;\n  color: #888;\n}\n"],"sourceRoot":""}]);
+}
+
+/* OrderDetail.module.scss */
+.V5OAbv7QFHo6WglNx0m0 {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px; /* Adjust margin as needed */
+}
+
+/* Adjust the space between quantity and total price */
+.V5OAbv7QFHo6WglNx0m0 span:nth-child(2) {
+  margin-right: 10px; /* Adjust margin as needed */
+}`, "",{"version":3,"sources":["webpack://./src/components/OrderDetail/OrderDetail.module.scss"],"names":[],"mappings":"AAEA;EACE,cAAA;EACA,sBAAA;EACA,oBAAA;EACA,sBAAA;EACA,4CAAA,EAAA,0BAAA;AADF;;AAIA;EACE,aAAA;EACA,8BAAA;EACA,mBAAA;EACA,gBAAA;EACA,oBAAA;AADF;;AAIA;EACE,gBAAA,EAAA,wCAAA;EACA,kBAAA,EAAA,sCAAA;AADF;;AAIA;EACE,aAAA;EACA,8BAAA;EACA,mBAAA;EACA,kBAAA;EACA,iBAAA;AADF;;AAIA;EACE,iBAAA;EACA,OAAA;AADF;;AAIA;EACE,kBAAA;EACA,gBAAA;EACA,WAAA;AADF;;AAIA,4BAAA;AAEA;EACE,aAAA;EACA,8BAAA;EACA,gBAAA,EAAA,4BAAA;AAFF;;AAKA,sDAAA;AACA;EACE,kBAAA,EAAA,4BAAA;AAFF","sourcesContent":["// OrderDetail.module.scss\n\n.OrderDetail {\n  padding: 2vmin;\n  border: 1px solid #ccc;\n  border-radius: 1vmin;\n  background-color: #fff;\n  box-shadow: 0 2vmin 4vmin rgba(0, 0, 0, 0.1); /* Using vmin for shadow */\n}\n\n.sectionHeading {\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n  font-size: 4vmin;\n  margin-bottom: 2vmin;\n}\n\n.lineItemContainer {\n  overflow-y: auto; /* Scrollable container for line items */\n  max-height: 60vmin; /* Limiting the height for scrolling */\n}\n\n.total {\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n  font-size: 3.5vmin;\n  margin-top: 2vmin;\n}\n\n.right {\n  text-align: right;\n  flex: 1;\n}\n\n.hungry {\n  text-align: center;\n  font-size: 4vmin;\n  color: #888;\n}\n\n/* OrderDetail.module.scss */\n\n.total {\n  display: flex;\n  justify-content: space-between;\n  margin-top: 10px; /* Adjust margin as needed */\n}\n\n/* Adjust the space between quantity and total price */\n.total span:nth-child(2) {\n  margin-right: 10px; /* Adjust margin as needed */\n}\n"],"sourceRoot":""}]);
 // Exports
 ___CSS_LOADER_EXPORT___.locals = {
 	"OrderDetail": `cPR75kdAXDGVxib0PszB`,
@@ -1708,8 +1666,8 @@ h3 {
 }
 
 h3:hover {
-  color: #F1AB3A; /* Change text color on hover */
-}`, "",{"version":3,"sources":["webpack://./src/pages/AuthPage/AuthPage.module.scss"],"names":[],"mappings":"AAAA;EACI,YAAA;EACA,aAAA;EACA,6BAAA;EACA,mBAAA;EACA,8BAAA;EACA,oBAAA;AACJ;;AAEE;EACE,iBAAA;EACA,kBAAA;EACA,wBAAA;EACA,eAAA;AACJ;;AACE;EACE,gBAAA,EAAA,qBAAA;EACA,WAAA,EAAA,mBAAA;EACA,oBAAA,EAAA,6BAAA;EACA,yBAAA,EAAA,8BAAA;EACA,eAAA,EAAA,sCAAA;AAEJ;;AACE;EACE,cAAA,EAAA,+BAAA;AAEJ","sourcesContent":[".AuthPage {\n    height: 100%;\n    display: flex;\n    justify-content: space-evenly;\n    align-items: center;\n    background-color: var(--white);\n    border-radius: 2vmin;\n  }\n  \n  .AuthPage h3 {\n    margin-top: 4vmin;\n    text-align: center;\n    color: var(--text-light);\n    cursor: pointer;\n  }\n  h3 {\n    font-size: 4vmin; /* Adjust font size */\n    color: #333; /* Set text color */\n    margin-bottom: 2vmin; /* Add margin at the bottom */\n    text-transform: uppercase; /* Convert text to uppercase */\n    cursor: pointer; /* Change cursor to pointer on hover */\n  }\n\n  h3:hover {\n    color: #F1AB3A; /* Change text color on hover */\n  }"],"sourceRoot":""}]);
+  color: #F1AB3A;
+}`, "",{"version":3,"sources":["webpack://./src/pages/AuthPage/AuthPage.module.scss"],"names":[],"mappings":"AAAA;EACI,YAAA;EACA,aAAA;EACA,6BAAA;EACA,mBAAA;EACA,8BAAA;EACA,oBAAA;AACJ;;AAEE;EACE,iBAAA;EACA,kBAAA;EACA,wBAAA;EACA,eAAA;AACJ;;AACE;EACE,gBAAA,EAAA,qBAAA;EACA,WAAA,EAAA,mBAAA;EACA,oBAAA,EAAA,6BAAA;EACA,yBAAA,EAAA,8BAAA;EACA,eAAA,EAAA,sCAAA;AAEJ;;AACE;EACE,cAAA;AAEJ","sourcesContent":[".AuthPage {\n    height: 100%;\n    display: flex;\n    justify-content: space-evenly;\n    align-items: center;\n    background-color: var(--white);\n    border-radius: 2vmin;\n  }\n  \n  .AuthPage h3 {\n    margin-top: 4vmin;\n    text-align: center;\n    color: var(--text-light);\n    cursor: pointer;\n  }\n  h3 {\n    font-size: 4vmin; /* Adjust font size */\n    color: #333; /* Set text color */\n    margin-bottom: 2vmin; /* Add margin at the bottom */\n    text-transform: uppercase; /* Convert text to uppercase */\n    cursor: pointer; /* Change cursor to pointer on hover */\n  }\n\n  h3:hover {\n    color: #F1AB3A;\n  }"],"sourceRoot":""}]);
 // Exports
 ___CSS_LOADER_EXPORT___.locals = {
 	"AuthPage": `RygkJgZmBHTETlLP3C3i`
@@ -1740,7 +1698,7 @@ var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBP
 ___CSS_LOADER_EXPORT___.push([module.id, `.RZqTJBeYN7RXwcHgPFys {
   height: 100%;
   display: grid;
-  grid-template-columns: 1.6fr 3.5fr 3fr;
+  grid-template-columns: 1fr 3fr 2fr; /* Adjust column sizes */
   grid-template-rows: 1fr;
   background-color: var(--white);
   border-radius: 2vmin;
@@ -1749,13 +1707,63 @@ ___CSS_LOADER_EXPORT___.push([module.id, `.RZqTJBeYN7RXwcHgPFys {
 .RZqTJBeYN7RXwcHgPFys aside {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: flex-start; /* Align items at the top */
   align-items: center;
-  margin: 3vmin 2vmin;
-}`, "",{"version":3,"sources":["webpack://./src/pages/NewOrderPage/NewOrderPage.module.scss"],"names":[],"mappings":"AAAA;EACI,YAAA;EACA,aAAA;EACA,sCAAA;EACA,uBAAA;EACA,8BAAA;EACA,oBAAA;AACJ;;AAEE;EACE,aAAA;EACA,sBAAA;EACA,8BAAA;EACA,mBAAA;EACA,mBAAA;AACJ","sourcesContent":[".NewOrderPage {\n    height: 100%;\n    display: grid;\n    grid-template-columns: 1.6fr 3.5fr 3fr;\n    grid-template-rows: 1fr;\n    background-color: var(--white);\n    border-radius: 2vmin;\n  }\n  \n  .NewOrderPage aside {\n    display: flex;\n    flex-direction: column;\n    justify-content: space-between;\n    align-items: center;\n    margin: 3vmin 2vmin;\n  }"],"sourceRoot":""}]);
+  height: 100%;
+  margin: 1.5vmin 2vmin; /* Adjust margin */
+}
+
+.kmHG526vtTXR9683wm4_ {
+  margin-bottom: 20px; /* Increase space below the Logo */
+}
+
+.c2UhpdxNlhfAOgMWuxPV {
+  position: sticky;
+  top: 0;
+  width: 200px;
+  overflow-y: auto;
+  background-color: var(--white);
+  border-right: 1px solid var(--gray);
+  padding: 20px;
+  z-index: 1;
+}
+
+.dDOM7pAvXPagfe9W_VuZ {
+  margin-top: auto;
+  margin-bottom: 20px;
+}
+
+.dDOM7pAvXPagfe9W_VuZ a {
+  font-size: 1.2em;
+  padding: 10px 20px; /* Adjust padding */
+}
+
+.TUf2lpQIhs_bxoNUosZS {
+  margin-top: 20px;
+  margin-bottom: 20px; /* Adjust margin */
+}
+
+.sj0kLBAc3YWLzzqUGC6U {
+  padding: 20px; /* Add padding to OrderDetail */
+  overflow-y: auto; /* Enable vertical scrolling if needed */
+}
+
+.U87jXgubxzEgLFlASDJg {
+  position: absolute;
+  top: 10px; /* Adjust the top distance as needed */
+  right: 10px; /* Adjust the right distance as needed */
+  padding: 10px 20px; /* Adjust the padding as needed */
+  font-size: 1.2em; /* Adjust the font size as needed */
+}`, "",{"version":3,"sources":["webpack://./src/pages/NewOrderPage/NewOrderPage.module.scss"],"names":[],"mappings":"AAAA;EACE,YAAA;EACA,aAAA;EACA,kCAAA,EAAA,wBAAA;EACA,uBAAA;EACA,8BAAA;EACA,oBAAA;AACF;;AAEA;EACE,aAAA;EACA,sBAAA;EACA,2BAAA,EAAA,2BAAA;EACA,mBAAA;EACA,YAAA;EACA,qBAAA,EAAA,kBAAA;AACF;;AAEA;EACE,mBAAA,EAAA,kCAAA;AACF;;AAEA;EACE,gBAAA;EACA,MAAA;EACA,YAAA;EACA,gBAAA;EACA,8BAAA;EACA,mCAAA;EACA,aAAA;EACA,UAAA;AACF;;AAEA;EACE,gBAAA;EACA,mBAAA;AACF;;AAEA;EACE,gBAAA;EACA,kBAAA,EAAA,mBAAA;AACF;;AAEA;EACE,gBAAA;EACA,mBAAA,EAAA,kBAAA;AACF;;AAEA;EACE,aAAA,EAAA,+BAAA;EACA,gBAAA,EAAA,wCAAA;AACF;;AAEA;EACE,kBAAA;EACA,SAAA,EAAA,sCAAA;EACA,WAAA,EAAA,wCAAA;EACA,kBAAA,EAAA,iCAAA;EACA,gBAAA,EAAA,mCAAA;AACF","sourcesContent":[".NewOrderPage {\n  height: 100%;\n  display: grid;\n  grid-template-columns: 1fr 3fr 2fr; /* Adjust column sizes */\n  grid-template-rows: 1fr;\n  background-color: var(--white);\n  border-radius: 2vmin;\n}\n\n.NewOrderPage aside {\n  display: flex;\n  flex-direction: column;\n  justify-content: flex-start; /* Align items at the top */\n  align-items: center;\n  height: 100%;\n  margin: 1.5vmin 2vmin; /* Adjust margin */\n}\n\n.Logo {\n  margin-bottom: 20px; /* Increase space below the Logo */\n}\n\n.CategoryListContainer {\n  position: sticky;\n  top: 0;\n  width: 200px;\n  overflow-y: auto;\n  background-color: var(--white);\n  border-right: 1px solid var(--gray);\n  padding: 20px;\n  z-index: 1;\n}\n\n.LinkContainer {\n  margin-top: auto;\n  margin-bottom: 20px;\n}\n\n.LinkContainer a {\n  font-size: 1.2em;\n  padding: 10px 20px; /* Adjust padding */\n}\n\n.UserLogOutContainer {\n  margin-top: 20px;\n  margin-bottom: 20px; /* Adjust margin */\n}\n\n.OrderDetail {\n  padding: 20px; /* Add padding to OrderDetail */\n  overflow-y: auto; /* Enable vertical scrolling if needed */\n}\n\n.toggleButton {\n  position: absolute;\n  top: 10px; /* Adjust the top distance as needed */\n  right: 10px; /* Adjust the right distance as needed */\n  padding: 10px 20px; /* Adjust the padding as needed */\n  font-size: 1.2em; /* Adjust the font size as needed */\n}"],"sourceRoot":""}]);
 // Exports
 ___CSS_LOADER_EXPORT___.locals = {
-	"NewOrderPage": `RZqTJBeYN7RXwcHgPFys`
+	"NewOrderPage": `RZqTJBeYN7RXwcHgPFys`,
+	"Logo": `kmHG526vtTXR9683wm4_`,
+	"CategoryListContainer": `c2UhpdxNlhfAOgMWuxPV`,
+	"LinkContainer": `dDOM7pAvXPagfe9W_VuZ`,
+	"UserLogOutContainer": `TUf2lpQIhs_bxoNUosZS`,
+	"OrderDetail": `sj0kLBAc3YWLzzqUGC6U`,
+	"toggleButton": `U87jXgubxzEgLFlASDJg`
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 

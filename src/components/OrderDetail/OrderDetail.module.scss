@@ -39,3 +39,16 @@
   font-size: 4vmin;
   color: #888;
 }
+
+/* OrderDetail.module.scss */
+
+.total {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px; /* Adjust margin as needed */
+}
+
+/* Adjust the space between quantity and total price */
+.total span:nth-child(2) {
+  margin-right: 10px; /* Adjust margin as needed */
+}

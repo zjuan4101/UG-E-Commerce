@@ -7,7 +7,7 @@ export default function CategoryList({ categories, activeCat, setActiveCat }) {
         <li
           key={category._id} // Use a unique identifier for the key
           className={category === activeCat ? styles.active : ''}
-          onClick={() => setActiveCat(category)}
+          onClick={() => setActiveCat(category.name)}
         >
           {category.name}
         </li>

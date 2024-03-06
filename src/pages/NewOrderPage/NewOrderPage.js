@@ -13,42 +13,31 @@ export default function NewOrderPage({ user, setUser }) {
   const [menuItems, setMenuItems] = useState([]);
   const [activeCat, setActiveCat] = useState('');
   const [cart, setCart] = useState(null);
+  const [showOrderDetail, setShowOrderDetail] = useState(false); // State variable for toggling OrderDetail visibility
   const categoriesRef = useRef([]);
   const navigate = useNavigate();
 
-  useEffect(function() {
+  useEffect(() => {
     async function getItems() {
       try {
         const { items, categories } = await itemsAPI.getAll();
-        // Process items and categories here
-        console.log('Items:', items);
-        console.log('Categories:', categories);
-    
-        // Set categories to the ref
         categoriesRef.current = categories;
-    
-        // Set menu items
         setMenuItems(items);
-        setActiveCat(categories[0].name); // Assuming categories is an array of objects with a 'name' property
+        setActiveCat(categories[0].name);
       } catch (error) {
         console.error('Error fetching items:', error.message);
       }
     }
     
-    getItems();
     async function getCart() {
       const cart = await ordersAPI.getCart();
       setCart(cart);
     }
+
+    getItems();
     getCart();
   }, []);
-   // Empty dependency array, runs after the first render only
-  
-  // Providing an empty 'dependency array'
-  // results in the effect running after
-  // the FIRST render only
 
-  /*-- Event Handlers --*/
   async function handleAddToOrder(itemId) {
     const updatedCart = await ordersAPI.addItemToCart(itemId);
     setCart(updatedCart);
@@ -64,27 +53,46 @@ export default function NewOrderPage({ user, setUser }) {
     navigate('/orders');
   }
 
+  // Function to toggle OrderDetail visibility
+  const toggleOrderDetail = () => {
+    setShowOrderDetail(prevState => !prevState);
+  };
+
   return (
     <main className={styles.NewOrderPage}>
       <aside>
         <Logo />
-        <CategoryList
-          categories={categoriesRef.current}
-          cart={setCart}
-          setActiveCat={setActiveCat}
-        />
-        <Link to="/orders" className="button btn-sm">PREVIOUS ORDERS</Link>
-        <UserLogOut user={user} setUser={setUser} />
+        <div className={styles.CategoryListContainer}>
+          <CategoryList
+            categories={categoriesRef.current}
+            cart={setCart}
+            setActiveCat={setActiveCat}
+          />
+        </div>
+        <div className={styles.LinkContainer}>
+          <Link to="/orders" className="button btn-sm">PREVIOUS ORDERS</Link>
+        </div>
+        <div className={styles.UserLogOutContainer}>
+          <UserLogOut user={user} setUser={setUser} />
+        </div>
+        {/* Button to toggle OrderDetail visibility */}
+        <button onClick={toggleOrderDetail} className={`button btn-sm ${styles.toggleButton}`}>
+          {showOrderDetail ? "Hide Cart" : "Show Cart"}
+        </button>
+
       </aside>
       <MenuList
-        menuItems={menuItems.filter(item => item.category.name === activeCat)}
+        menuItems={menuItems.filter(item => item.category.find(cat => cat.name === activeCat))}
         handleAddToOrder={handleAddToOrder}
       />
-      <OrderDetail
-        order={cart}
-        handleChangeQty={handleChangeQty}
-        handleCheckout={handleCheckout}
-      />
+      {/* Conditional rendering of OrderDetail */}
+      {showOrderDetail && (
+        <OrderDetail
+          order={cart}
+          handleChangeQty={handleChangeQty}
+          handleCheckout={handleCheckout}
+        />
+      )}
     </main>
   );
 }

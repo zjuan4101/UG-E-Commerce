@@ -5,7 +5,9 @@ export default function Logo() {
   return (
     <div className={styles.Logo}>
       <div className={styles.Logo}>
-      <img src='/img/UGfinal.png'/>
+      <img src='/img/UGfinaltransparent.png'/>
+      <div>UNKNOWN</div>
+      <div>GUARDIANS</div>
       </div>
     </div>
   );

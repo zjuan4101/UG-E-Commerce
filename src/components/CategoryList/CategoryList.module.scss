@@ -1,23 +1,30 @@
-/* CategoryList.module.scss */
+@keyframes breathe {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.05); } /* Scale up */
+  100% { transform: scale(1); }
+}
 
 .CategoryList {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-  }
-  
-  .CategoryList li {
-    padding: 10px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-  }
-  
-  .CategoryList li:hover {
-    background-color: #F1AB3A;
-  }
-  
-  .CategoryList li.active {
-    background-color: #bb0000; /* Main color */
-    color: #ffffff; /* White color for text */
-  }
-  
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.CategoryList li {
+  padding: 8px 10px; /* Adjust padding for top/bottom and left/right */
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  font-size: 2.2em; /* Set the font size to make it a little bigger */
+  margin-bottom: 8px; /* Add a tiny bit of space between each list item */
+}
+
+.CategoryList li:hover {
+  background-color: #F1AB3A;
+  color:#bb0000;
+  animation: breathe 1.5s infinite;
+}
+
+.CategoryList li.active {
+  background-color: #bb0000; /* Main color */
+  color: #ffffff; /* White color for text */
+}
