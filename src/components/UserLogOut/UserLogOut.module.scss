@@ -1,13 +1,11 @@
-// UserLogOut.module.scss
-
 .UserLogOut {
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: #F1AB3A; /* Light tan-1 color */
+  background-color: #F1AB3A;
   padding: 2vmin;
   border-radius: 1vmin;
-  border: 1px solid #D3C1AE; /* Tan-3 color */
+  border: 1px solid #D3C1AE;
 }
 
 .email {
@@ -19,8 +17,8 @@ button {
   margin-top: 1vmin;
   padding: 1vmin 2vmin;
   font-size: 2.5vmin;
-  background-color: #BB0000; /* Dark red color */
-  color: #FFFFFF; /* White color */
+  background-color: #BB0000;
+  color: #FFFFFF;
   border: none;
   border-radius: 0.5vmin;
   cursor: pointer;

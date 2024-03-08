@@ -1,12 +1,11 @@
-// OrderDetail.module.scss
-
 .OrderDetail {
   padding: 2vmin;
   border: 1px solid #ccc;
   border-radius: 1vmin;
   background-color: #fff;
-  box-shadow: 0 2vmin 4vmin rgba(0, 0, 0, 0.1); /* Using vmin for shadow */
+  box-shadow: 0 2vmin 4vmin rgba(0, 0, 0, 0.1);
 }
+
 
 .sectionHeading {
   display: flex;
@@ -40,15 +39,13 @@
   color: #888;
 }
 
-/* OrderDetail.module.scss */
 
 .total {
   display: flex;
   justify-content: space-between;
-  margin-top: 10px; /* Adjust margin as needed */
+  margin-top: 10px;
 }
 
-/* Adjust the space between quantity and total price */
 .total span:nth-child(2) {
-  margin-right: 10px; /* Adjust margin as needed */
+  margin-right: 10px;
 }

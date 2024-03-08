@@ -53,46 +53,39 @@ export default function NewOrderPage({ user, setUser }) {
     navigate('/orders');
   }
 
-  // Function to toggle OrderDetail visibility
-  const toggleOrderDetail = () => {
-    setShowOrderDetail(prevState => !prevState);
-  };
-
   return (
     <main className={styles.NewOrderPage}>
-      <aside>
-        <Logo />
-        <div className={styles.CategoryListContainer}>
-          <CategoryList
-            categories={categoriesRef.current}
-            cart={setCart}
-            setActiveCat={setActiveCat}
-          />
-        </div>
-        <div className={styles.LinkContainer}>
-          <Link to="/orders" className="button btn-sm">PREVIOUS ORDERS</Link>
-        </div>
-        <div className={styles.UserLogOutContainer}>
-          <UserLogOut user={user} setUser={setUser} />
-        </div>
-        {/* Button to toggle OrderDetail visibility */}
-        <button onClick={toggleOrderDetail} className={`button btn-sm ${styles.toggleButton}`}>
-          {showOrderDetail ? "Hide Cart" : "Show Cart"}
-        </button>
-
-      </aside>
-      <MenuList
-        menuItems={menuItems.filter(item => item.category.find(cat => cat.name === activeCat))}
-        handleAddToOrder={handleAddToOrder}
-      />
-      {/* Conditional rendering of OrderDetail */}
-      {showOrderDetail && (
-        <OrderDetail
-          order={cart}
-          handleChangeQty={handleChangeQty}
-          handleCheckout={handleCheckout}
+    <aside>
+      <Logo />
+      <div className={styles.CategoryListContainer}>
+        <CategoryList
+          categories={categoriesRef.current}
+          cart={setCart}
+          setActiveCat={setActiveCat}
         />
-      )}
-    </main>
+      </div>
+      <div className={styles.LinkContainer}>
+        <Link to="/orders" className="button btn-sm">PREVIOUS ORDERS</Link>
+        {/* Button to show the cart */}
+        <button onClick={() => setShowOrderDetail(true)} className={`button btn-sm toggleButton`}>Show Cart</button>
+      </div>
+      <div className={styles.UserLogOutContainer}>
+        <UserLogOut user={user} setUser={setUser} />
+      </div>
+    </aside>
+    <MenuList
+      menuItems={menuItems.filter(item => item.category.find(cat => cat.name === activeCat))}
+      handleAddToOrder={handleAddToOrder}
+    />
+    {/* Conditional rendering of OrderDetail */}
+    {showOrderDetail && (
+      <OrderDetail
+        order={cart}
+        handleChangeQty={handleChangeQty}
+        handleCheckout={handleCheckout}
+        hideCart={() => setShowOrderDetail(false)} // Pass the function to hide the cart
+      />
+    )}
+  </main>  
   );
 }

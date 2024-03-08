@@ -265,46 +265,55 @@ function MenuListItem(_ref) {
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (/* binding */ OrderDetail)
 /* harmony export */ });
-/* harmony import */ var _OrderDetail_module_scss__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./OrderDetail.module.scss */ "./src/components/OrderDetail/OrderDetail.module.scss");
-/* harmony import */ var _LineItem_LineItem__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../LineItem/LineItem */ "./src/components/LineItem/LineItem.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _OrderDetail_module_scss__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./OrderDetail.module.scss */ "./src/components/OrderDetail/OrderDetail.module.scss");
+/* harmony import */ var _LineItem_LineItem__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../LineItem/LineItem */ "./src/components/LineItem/LineItem.js");
 /* provided dependency */ var React = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 
 
 
-// Used to display the details of any order, including the cart (unpaid order)
 function OrderDetail(_ref) {
   let {
     order,
     handleChangeQty,
-    handleCheckout
+    handleCheckout,
+    hideCart
   } = _ref;
   if (!order) return null;
-  const lineItems = order.lineItems.map(item => /*#__PURE__*/React.createElement(_LineItem_LineItem__WEBPACK_IMPORTED_MODULE_1__["default"], {
+  const lineItems = order.lineItems.map(item => /*#__PURE__*/React.createElement(_LineItem_LineItem__WEBPACK_IMPORTED_MODULE_2__["default"], {
     lineItem: item,
     isPaid: order.isPaid,
     handleChangeQty: handleChangeQty,
     key: item._id
   }));
   return /*#__PURE__*/React.createElement("div", {
-    className: _OrderDetail_module_scss__WEBPACK_IMPORTED_MODULE_0__["default"].OrderDetail
+    className: _OrderDetail_module_scss__WEBPACK_IMPORTED_MODULE_1__["default"].OrderDetail,
+    id: "OrderDetail"
   }, /*#__PURE__*/React.createElement("div", {
-    className: _OrderDetail_module_scss__WEBPACK_IMPORTED_MODULE_0__["default"].sectionHeading
+    class: "background-image"
+  }), /*#__PURE__*/React.createElement("div", {
+    className: _OrderDetail_module_scss__WEBPACK_IMPORTED_MODULE_1__["default"].sectionHeading,
+    id: "content"
   }, order.isPaid ? /*#__PURE__*/React.createElement("span", null, "ORDER ", /*#__PURE__*/React.createElement("span", {
     className: "smaller"
-  }, order.orderId)) : /*#__PURE__*/React.createElement("span", null, "NEW ORDER"), /*#__PURE__*/React.createElement("span", null, new Date(order.updatedAt).toLocaleDateString())), /*#__PURE__*/React.createElement("div", {
-    className: "".concat(_OrderDetail_module_scss__WEBPACK_IMPORTED_MODULE_0__["default"].lineItemContainer, " flex-ctr-ctr flex-col scroll-y")
+  }, order.orderId)) : /*#__PURE__*/React.createElement("span", null, "NEW ORDER"), /*#__PURE__*/React.createElement("span", null, new Date(order.updatedAt).toLocaleDateString()), /*#__PURE__*/React.createElement("button", {
+    onClick: hideCart,
+    className: "button btn-sm"
+  }, "Hide Cart")), /*#__PURE__*/React.createElement("div", {
+    className: "".concat(_OrderDetail_module_scss__WEBPACK_IMPORTED_MODULE_1__["default"].lineItemContainer, " flex-ctr-ctr flex-col scroll-y")
   }, lineItems.length ? /*#__PURE__*/React.createElement(React.Fragment, null, lineItems, /*#__PURE__*/React.createElement("section", {
-    className: _OrderDetail_module_scss__WEBPACK_IMPORTED_MODULE_0__["default"].total
+    className: _OrderDetail_module_scss__WEBPACK_IMPORTED_MODULE_1__["default"].total
   }, order.isPaid ? /*#__PURE__*/React.createElement("span", {
-    className: _OrderDetail_module_scss__WEBPACK_IMPORTED_MODULE_0__["default"].right
+    className: _OrderDetail_module_scss__WEBPACK_IMPORTED_MODULE_1__["default"].right
   }, "TOTAL\xA0\xA0") : /*#__PURE__*/React.createElement("button", {
     className: "btn-sm",
     onClick: handleCheckout,
     disabled: !lineItems.length
   }, "CHECKOUT"), /*#__PURE__*/React.createElement("span", null, order.totalQty), /*#__PURE__*/React.createElement("span", {
-    className: _OrderDetail_module_scss__WEBPACK_IMPORTED_MODULE_0__["default"].right
+    className: _OrderDetail_module_scss__WEBPACK_IMPORTED_MODULE_1__["default"].right
   }, "$", order.orderTotal.toFixed(2)))) : /*#__PURE__*/React.createElement("div", {
-    className: _OrderDetail_module_scss__WEBPACK_IMPORTED_MODULE_0__["default"].hungry
+    className: _OrderDetail_module_scss__WEBPACK_IMPORTED_MODULE_1__["default"].hungry
   }, "We the best Esports team!")));
 }
 
@@ -649,11 +658,6 @@ function NewOrderPage(_ref) {
     await _utilities_orders_api__WEBPACK_IMPORTED_MODULE_9__.checkout();
     navigate('/orders');
   }
-
-  // Function to toggle OrderDetail visibility
-  const toggleOrderDetail = () => {
-    setShowOrderDetail(prevState => !prevState);
-  };
   return /*#__PURE__*/React.createElement("main", {
     className: _NewOrderPage_module_scss__WEBPACK_IMPORTED_MODULE_1__["default"].NewOrderPage
   }, /*#__PURE__*/React.createElement("aside", null, /*#__PURE__*/React.createElement(_components_Logo_Logo__WEBPACK_IMPORTED_MODULE_2__["default"], null), /*#__PURE__*/React.createElement("div", {
@@ -667,21 +671,22 @@ function NewOrderPage(_ref) {
   }, /*#__PURE__*/React.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_10__.Link, {
     to: "/orders",
     className: "button btn-sm"
-  }, "PREVIOUS ORDERS")), /*#__PURE__*/React.createElement("div", {
+  }, "PREVIOUS ORDERS"), /*#__PURE__*/React.createElement("button", {
+    onClick: () => setShowOrderDetail(true),
+    className: "button btn-sm toggleButton"
+  }, "Show Cart")), /*#__PURE__*/React.createElement("div", {
     className: _NewOrderPage_module_scss__WEBPACK_IMPORTED_MODULE_1__["default"].UserLogOutContainer
   }, /*#__PURE__*/React.createElement(_components_UserLogOut_UserLogOut__WEBPACK_IMPORTED_MODULE_6__["default"], {
     user: user,
     setUser: setUser
-  })), /*#__PURE__*/React.createElement("button", {
-    onClick: toggleOrderDetail,
-    className: "button btn-sm ".concat(_NewOrderPage_module_scss__WEBPACK_IMPORTED_MODULE_1__["default"].toggleButton)
-  }, showOrderDetail ? "Hide Cart" : "Show Cart")), /*#__PURE__*/React.createElement(_components_MenuList_MenuList__WEBPACK_IMPORTED_MODULE_3__["default"], {
+  }))), /*#__PURE__*/React.createElement(_components_MenuList_MenuList__WEBPACK_IMPORTED_MODULE_3__["default"], {
     menuItems: menuItems.filter(item => item.category.find(cat => cat.name === activeCat)),
     handleAddToOrder: handleAddToOrder
   }), showOrderDetail && /*#__PURE__*/React.createElement(_components_OrderDetail_OrderDetail__WEBPACK_IMPORTED_MODULE_5__["default"], {
     order: cart,
     handleChangeQty: handleChangeQty,
-    handleCheckout: handleCheckout
+    handleCheckout: handleCheckout,
+    hideCart: () => setShowOrderDetail(false) // Pass the function to hide the cart
   }));
 }
 
@@ -1072,7 +1077,7 @@ ___CSS_LOADER_EXPORT___.push([module.id, `@keyframes o6CQ1MRMxq0qpw5dU6i4 {
   padding: 8px 10px; /* Adjust padding for top/bottom and left/right */
   cursor: pointer;
   transition: background-color 0.3s ease;
-  font-size: 2.2em; /* Set the font size to make it a little bigger */
+  font-size: 1.8em; /* Set the font size to make it a little bigger */
   margin-bottom: 8px; /* Add a tiny bit of space between each list item */
 }
 
@@ -1085,7 +1090,7 @@ ___CSS_LOADER_EXPORT___.push([module.id, `@keyframes o6CQ1MRMxq0qpw5dU6i4 {
 .l8hJyaPvo9smd6LiNqWK li._scckhAN2KPE1u73kR14 {
   background-color: #bb0000; /* Main color */
   color: #ffffff; /* White color for text */
-}`, "",{"version":3,"sources":["webpack://./src/components/CategoryList/CategoryList.module.scss"],"names":[],"mappings":"AAAA;EACE;IAAK,mBAAA;EAEL;EADA;IAAM,sBAAA;EAIN,EAJgC,aAAA;EAChC;IAAO,mBAAA;EAMP;AACF;AAJA;EACE,gBAAA;EACA,UAAA;EACA,SAAA;AAMF;;AAHA;EACE,iBAAA,EAAA,iDAAA;EACA,eAAA;EACA,sCAAA;EACA,gBAAA,EAAA,iDAAA;EACA,kBAAA,EAAA,mDAAA;AAMF;;AAHA;EACE,yBAAA;EACA,cAAA;EACA,6CAAA;AAMF;;AAHA;EACE,yBAAA,EAAA,eAAA;EACA,cAAA,EAAA,yBAAA;AAMF","sourcesContent":["@keyframes breathe {\n  0% { transform: scale(1); }\n  50% { transform: scale(1.05); } /* Scale up */\n  100% { transform: scale(1); }\n}\n\n.CategoryList {\n  list-style: none;\n  padding: 0;\n  margin: 0;\n}\n\n.CategoryList li {\n  padding: 8px 10px; /* Adjust padding for top/bottom and left/right */\n  cursor: pointer;\n  transition: background-color 0.3s ease;\n  font-size: 2.2em; /* Set the font size to make it a little bigger */\n  margin-bottom: 8px; /* Add a tiny bit of space between each list item */\n}\n\n.CategoryList li:hover {\n  background-color: #F1AB3A;\n  color:#bb0000;\n  animation: breathe 1.5s infinite;\n}\n\n.CategoryList li.active {\n  background-color: #bb0000; /* Main color */\n  color: #ffffff; /* White color for text */\n}\n"],"sourceRoot":""}]);
+}`, "",{"version":3,"sources":["webpack://./src/components/CategoryList/CategoryList.module.scss"],"names":[],"mappings":"AAAA;EACE;IAAK,mBAAA;EAEL;EADA;IAAM,sBAAA;EAIN,EAJgC,aAAA;EAChC;IAAO,mBAAA;EAMP;AACF;AAJA;EACE,gBAAA;EACA,UAAA;EACA,SAAA;AAMF;;AAHA;EACE,iBAAA,EAAA,iDAAA;EACA,eAAA;EACA,sCAAA;EACA,gBAAA,EAAA,iDAAA;EACA,kBAAA,EAAA,mDAAA;AAMF;;AAHA;EACE,yBAAA;EACA,cAAA;EACA,6CAAA;AAMF;;AAHA;EACE,yBAAA,EAAA,eAAA;EACA,cAAA,EAAA,yBAAA;AAMF","sourcesContent":["@keyframes breathe {\n  0% { transform: scale(1); }\n  50% { transform: scale(1.05); } /* Scale up */\n  100% { transform: scale(1); }\n}\n\n.CategoryList {\n  list-style: none;\n  padding: 0;\n  margin: 0;\n}\n\n.CategoryList li {\n  padding: 8px 10px; /* Adjust padding for top/bottom and left/right */\n  cursor: pointer;\n  transition: background-color 0.3s ease;\n  font-size: 1.8em; /* Set the font size to make it a little bigger */\n  margin-bottom: 8px; /* Add a tiny bit of space between each list item */\n}\n\n.CategoryList li:hover {\n  background-color: #F1AB3A;\n  color:#bb0000;\n  animation: breathe 1.5s infinite;\n}\n\n.CategoryList li.active {\n  background-color: #bb0000; /* Main color */\n  color: #ffffff; /* White color for text */\n}\n"],"sourceRoot":""}]);
 // Exports
 ___CSS_LOADER_EXPORT___.locals = {
 	"CategoryList": `l8hJyaPvo9smd6LiNqWK`,
@@ -1115,8 +1120,7 @@ ___CSS_LOADER_EXPORT___.locals = {
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default()((_node_modules_css_loader_dist_runtime_sourceMaps_js__WEBPACK_IMPORTED_MODULE_0___default()));
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, `/* LineItem.module.scss */
-.ZeRW57PNaWpYVsw6JlaC {
+___CSS_LOADER_EXPORT___.push([module.id, `.ZeRW57PNaWpYVsw6JlaC {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -1145,13 +1149,13 @@ ___CSS_LOADER_EXPORT___.push([module.id, `/* LineItem.module.scss */
 
 .iZ6oJDRJlBAjRnxPhUy5 {
   font-weight: bold;
-  font-size: 14px; /* Adjust font size to make it smaller */
+  font-size: 14px;
 }
 
 .SlFLuhha4xQENSpwSoNW {
   font-size: 12px;
   text-align: center;
-}`, "",{"version":3,"sources":["webpack://./src/components/LineItem/LineItem.module.scss"],"names":[],"mappings":"AAAA,yBAAA;AAEA;EACI,aAAA;EACA,8BAAA;EACA,mBAAA;EACA,aAAA;EACA,6BAAA;AAAJ;;AAGA;EACI,aAAA;EACA,mBAAA;AAAJ;;AAGA;EACI,aAAA;EACA,iBAAA;EACA,yBAAA,EAAA,eAAA;EACA,cAAA,EAAA,yBAAA;EACA,YAAA;EACA,kBAAA;EACA,eAAA;AAAJ;;AAGA;EACI,yBAAA,EAAA,+BAAA;AAAJ;;AAGA;EACI,iBAAA;EACA,eAAA,EAAA,wCAAA;AAAJ;;AAEA;EACI,eAAA;EACA,kBAAA;AACJ","sourcesContent":["/* LineItem.module.scss */\n\n.LineItem {\n    display: flex;\n    justify-content: space-between;\n    align-items: center;\n    padding: 10px;\n    border-bottom: 1px solid #ccc;\n}\n  \n.qty {\n    display: flex;\n    align-items: center;\n}\n  \n.qty button {\n    margin: 0 5px;\n    padding: 5px 10px;\n    background-color: #bb0000; /* Main color */\n    color: #ffffff; /* White color for text */\n    border: none;\n    border-radius: 5px;\n    cursor: pointer;\n}\n  \n.qty button:hover {\n    background-color: #a30000; /* Darken main color on hover */\n}\n  \n.extPrice {\n    font-weight: bold;\n    font-size: 14px; /* Adjust font size to make it smaller */\n}\n.itemName {\n    font-size: 12px;\n    text-align: center;\n  }\n"],"sourceRoot":""}]);
+}`, "",{"version":3,"sources":["webpack://./src/components/LineItem/LineItem.module.scss"],"names":[],"mappings":"AAAA;EACI,aAAA;EACA,8BAAA;EACA,mBAAA;EACA,aAAA;EACA,6BAAA;AACJ;;AAEA;EACI,aAAA;EACA,mBAAA;AACJ;;AAEA;EACI,aAAA;EACA,iBAAA;EACA,yBAAA,EAAA,eAAA;EACA,cAAA,EAAA,yBAAA;EACA,YAAA;EACA,kBAAA;EACA,eAAA;AACJ;;AAEA;EACI,yBAAA,EAAA,+BAAA;AACJ;;AAEA;EACI,iBAAA;EACA,eAAA;AACJ;;AACA;EACI,eAAA;EACA,kBAAA;AAEJ","sourcesContent":[".LineItem {\n    display: flex;\n    justify-content: space-between;\n    align-items: center;\n    padding: 10px;\n    border-bottom: 1px solid #ccc;\n}\n  \n.qty {\n    display: flex;\n    align-items: center;\n}\n  \n.qty button {\n    margin: 0 5px;\n    padding: 5px 10px;\n    background-color: #bb0000; /* Main color */\n    color: #ffffff; /* White color for text */\n    border: none;\n    border-radius: 5px;\n    cursor: pointer;\n}\n  \n.qty button:hover {\n    background-color: #a30000; /* Darken main color on hover */\n}\n  \n.extPrice {\n    font-weight: bold;\n    font-size: 14px;\n}\n.itemName {\n    font-size: 12px;\n    text-align: center;\n  }\n"],"sourceRoot":""}]);
 // Exports
 ___CSS_LOADER_EXPORT___.locals = {
 	"LineItem": `ZeRW57PNaWpYVsw6JlaC`,
@@ -1258,10 +1262,10 @@ ___CSS_LOADER_EXPORT___.locals = {
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default()((_node_modules_css_loader_dist_runtime_sourceMaps_js__WEBPACK_IMPORTED_MODULE_0___default()));
 // Module
 ___CSS_LOADER_EXPORT___.push([module.id, `.EDeinQzfS2N2rVW_Z1GP {
-  font-size: 2em; /* Adjust the font size as needed */
-  font-weight: bold; /* Make the text bold */
-  color: transparent; /* Set the text color to transparent */
-  background-image: linear-gradient(to right, #bb0000, #bfb5af, #010101); /* Define the gradient */
+  font-size: 2em;
+  font-weight: bold;
+  color: transparent;
+  background-image: linear-gradient(to right, #bb0000, #bfb5af, #010101);
   -webkit-background-clip: text; /* Apply background-clip property for WebKit browsers */
   background-clip: text; /* Apply background-clip property for other browsers */
   display: inline-block; /* Ensure text flows inline */
@@ -1274,13 +1278,13 @@ ___CSS_LOADER_EXPORT___.push([module.id, `.EDeinQzfS2N2rVW_Z1GP {
 }
 
 .EDeinQzfS2N2rVW_Z1GP img {
-  width: 200px; /* Adjust the width as needed */
+  width: 200px;
   height: 200px;
   -o-object-fit: cover;
-  object-fit: cover; /* Adjust the height as needed */
+  object-fit: cover;
   border-radius: 50%; /* Make the image circular */
-  margin-right: 10px; /* Adjust the margin as needed */
-}`, "",{"version":3,"sources":["webpack://./src/components/Logo/Logo.module.scss"],"names":[],"mappings":"AAAA;EACE,cAAA,EAAA,mCAAA;EACA,iBAAA,EAAA,uBAAA;EACA,kBAAA,EAAA,sCAAA;EACA,sEAAA,EAAA,wBAAA;EACA,6BAAA,EAAA,uDAAA;EACA,qBAAA,EAAA,sDAAA;EACA,qBAAA,EAAA,6BAAA;AACF;;AAEA;EACE,aAAA;EACA,sBAAA;EACA,mBAAA;AACF;;AAEA;EACE,YAAA,EAAA,+BAAA;EACA,aAAA;EACA,oBAAA;EACG,iBAAA,EAAA,gCAAA;EACH,kBAAA,EAAA,4BAAA;EACA,kBAAA,EAAA,gCAAA;AACF","sourcesContent":[".Logo {\n  font-size: 2em; /* Adjust the font size as needed */\n  font-weight: bold; /* Make the text bold */\n  color: transparent; /* Set the text color to transparent */\n  background-image: linear-gradient(to right, #bb0000, #bfb5af, #010101); /* Define the gradient */\n  -webkit-background-clip: text; /* Apply background-clip property for WebKit browsers */\n  background-clip: text; /* Apply background-clip property for other browsers */\n  display: inline-block; /* Ensure text flows inline */\n}\n\n.Logo > div {\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n}\n\n.Logo img {\n  width: 200px; /* Adjust the width as needed */\n  height: 200px;\n  -o-object-fit: cover;\n     object-fit: cover; /* Adjust the height as needed */\n  border-radius: 50%; /* Make the image circular */\n  margin-right: 10px; /* Adjust the margin as needed */\n}\n"],"sourceRoot":""}]);
+  margin-right: 10px;
+}`, "",{"version":3,"sources":["webpack://./src/components/Logo/Logo.module.scss"],"names":[],"mappings":"AAAA;EACE,cAAA;EACA,iBAAA;EACA,kBAAA;EACA,sEAAA;EACA,6BAAA,EAAA,uDAAA;EACA,qBAAA,EAAA,sDAAA;EACA,qBAAA,EAAA,6BAAA;AACF;;AAEA;EACE,aAAA;EACA,sBAAA;EACA,mBAAA;AACF;;AAEA;EACE,YAAA;EACA,aAAA;EACA,oBAAA;EACG,iBAAA;EACH,kBAAA,EAAA,4BAAA;EACA,kBAAA;AACF","sourcesContent":[".Logo {\n  font-size: 2em;\n  font-weight: bold;\n  color: transparent;\n  background-image: linear-gradient(to right, #bb0000, #bfb5af, #010101);\n  -webkit-background-clip: text; /* Apply background-clip property for WebKit browsers */\n  background-clip: text; /* Apply background-clip property for other browsers */\n  display: inline-block; /* Ensure text flows inline */\n}\n\n.Logo > div {\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n}\n\n.Logo img {\n  width: 200px;\n  height: 200px;\n  -o-object-fit: cover;\n     object-fit: cover;\n  border-radius: 50%; /* Make the image circular */\n  margin-right: 10px;\n}\n"],"sourceRoot":""}]);
 // Exports
 ___CSS_LOADER_EXPORT___.locals = {
 	"Logo": `EDeinQzfS2N2rVW_Z1GP`
@@ -1319,7 +1323,7 @@ ___CSS_LOADER_EXPORT___.push([module.id, `.eBz5FvD9TgyIgfFi1MdG {
   .eBz5FvD9TgyIgfFi1MdG {
     grid-template-columns: repeat(auto-fill, minmax(30vmin, 1fr)); /* Adjust columns for smaller screens */
   }
-}`, "",{"version":3,"sources":["webpack://./src/components/MenuList/MenuList.module.scss"],"names":[],"mappings":"AAEA;EACI,aAAA;EACA,6DAAA,EAAA,4BAAA;EACA,UAAA,EAAA,2BAAA;EACA,cAAA;AADJ;;AAIE;EACE;IACE,6DAAA,EAAA,uCAAA;EADJ;AACF","sourcesContent":["// MenuList.module.scss\n\n.MenuList {\n    display: grid;\n    grid-template-columns: repeat(auto-fill, minmax(20vmin, 1fr)); /* Responsive grid columns */\n    gap: 2vmin; /* Gap between menu items */\n    padding: 2vmin;\n  }\n  \n  @media screen and (max-width: 768px) {\n    .MenuList {\n      grid-template-columns: repeat(auto-fill, minmax(30vmin, 1fr)); /* Adjust columns for smaller screens */\n    }\n  }\n  "],"sourceRoot":""}]);
+}`, "",{"version":3,"sources":["webpack://./src/components/MenuList/MenuList.module.scss"],"names":[],"mappings":"AAAA;EACI,aAAA;EACA,6DAAA,EAAA,4BAAA;EACA,UAAA,EAAA,2BAAA;EACA,cAAA;AACJ;;AAEE;EACE;IACE,6DAAA,EAAA,uCAAA;EACJ;AACF","sourcesContent":[".MenuList {\n    display: grid;\n    grid-template-columns: repeat(auto-fill, minmax(20vmin, 1fr)); /* Responsive grid columns */\n    gap: 2vmin; /* Gap between menu items */\n    padding: 2vmin;\n  }\n  \n  @media screen and (max-width: 768px) {\n    .MenuList {\n      grid-template-columns: repeat(auto-fill, minmax(30vmin, 1fr)); /* Adjust columns for smaller screens */\n    }\n  }\n  "],"sourceRoot":""}]);
 // Exports
 ___CSS_LOADER_EXPORT___.locals = {
 	"MenuList": `eBz5FvD9TgyIgfFi1MdG`
@@ -1347,18 +1351,12 @@ ___CSS_LOADER_EXPORT___.locals = {
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default()((_node_modules_css_loader_dist_runtime_sourceMaps_js__WEBPACK_IMPORTED_MODULE_0___default()));
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, `/* MenuListItem.module.scss */
-.X4tFBfG4MKknHvd01CKE {
+___CSS_LOADER_EXPORT___.push([module.id, `.X4tFBfG4MKknHvd01CKE {
   display: flex;
-  flex-direction: column; /* Arrange items in a column */
+  flex-direction: column;
   align-items: center;
-  padding: 2vmin; /* Increased padding */
-  border-bottom: 0.1vmin solid #ccc; /* Add a border bottom for separation */
-}
-
-.GqkE12RHPdZZg1360W4p {
-  font-size: 3.5vmin; /* Adjusted emoji font size */
-  margin-bottom: 2vmin; /* Increased margin below emoji */
+  padding: 2vmin;
+  border-bottom: 0.1vmin solid #ccc;
 }
 
 .VR1OCl60qOXrRx1IzVEa {
@@ -1378,11 +1376,10 @@ ___CSS_LOADER_EXPORT___.push([module.id, `/* MenuListItem.module.scss */
 
 button.pJ3MTo6o133y1xTbjdEF {
   font-size: 2.5vmin; /* Adjusted button font size */
-}`, "",{"version":3,"sources":["webpack://./src/components/MenuListItem/MenuListItem.module.scss"],"names":[],"mappings":"AAAA,6BAAA;AAEA;EACE,aAAA;EACA,sBAAA,EAAA,8BAAA;EACA,mBAAA;EACA,cAAA,EAAA,sBAAA;EACA,iCAAA,EAAA,uCAAA;AAAF;;AAGA;EACE,kBAAA,EAAA,6BAAA;EACA,oBAAA,EAAA,iCAAA;AAAF;;AAGA;EACE,gBAAA,EAAA,4BAAA;EACA,sBAAA,EAAA,gCAAA;AAAF;;AAGA;EACE,aAAA;EACA,mBAAA;AAAF;;AAGA;EACE,gBAAA,EAAA,6BAAA;EACA,mBAAA,EAAA,mDAAA;AAAF;;AAGA;EACE,kBAAA,EAAA,8BAAA;AAAF","sourcesContent":["/* MenuListItem.module.scss */\n\n.MenuListItem {\n  display: flex;\n  flex-direction: column; /* Arrange items in a column */\n  align-items: center;\n  padding: 2vmin; /* Increased padding */\n  border-bottom: 0.1vmin solid #ccc; /* Add a border bottom for separation */\n}\n\n.emoji {\n  font-size: 3.5vmin; /* Adjusted emoji font size */\n  margin-bottom: 2vmin; /* Increased margin below emoji */\n}\n\n.name {\n  font-size: 3vmin; /* Adjusted name font size */\n  margin-bottom: 1.5vmin; /* Increased margin below name */\n}\n\n.buy {\n  display: flex;\n  align-items: center;\n}\n\n.buy span {\n  font-size: 3vmin; /* Adjusted price font size */\n  margin-right: 2vmin; /* Increased margin to separate price from button */\n}\n\nbutton.btn-sm {\n  font-size: 2.5vmin; /* Adjusted button font size */\n}\n"],"sourceRoot":""}]);
+}`, "",{"version":3,"sources":["webpack://./src/components/MenuListItem/MenuListItem.module.scss"],"names":[],"mappings":"AAAA;EACE,aAAA;EACA,sBAAA;EACA,mBAAA;EACA,cAAA;EACA,iCAAA;AACF;;AAGA;EACE,gBAAA,EAAA,4BAAA;EACA,sBAAA,EAAA,gCAAA;AAAF;;AAGA;EACE,aAAA;EACA,mBAAA;AAAF;;AAGA;EACE,gBAAA,EAAA,6BAAA;EACA,mBAAA,EAAA,mDAAA;AAAF;;AAGA;EACE,kBAAA,EAAA,8BAAA;AAAF","sourcesContent":[".MenuListItem {\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n  padding: 2vmin;\n  border-bottom: 0.1vmin solid #ccc;\n}\n\n\n.name {\n  font-size: 3vmin; /* Adjusted name font size */\n  margin-bottom: 1.5vmin; /* Increased margin below name */\n}\n\n.buy {\n  display: flex;\n  align-items: center;\n}\n\n.buy span {\n  font-size: 3vmin; /* Adjusted price font size */\n  margin-right: 2vmin; /* Increased margin to separate price from button */\n}\n\nbutton.btn-sm {\n  font-size: 2.5vmin; /* Adjusted button font size */\n}\n"],"sourceRoot":""}]);
 // Exports
 ___CSS_LOADER_EXPORT___.locals = {
 	"MenuListItem": `X4tFBfG4MKknHvd01CKE`,
-	"emoji": `GqkE12RHPdZZg1360W4p`,
 	"name": `VR1OCl60qOXrRx1IzVEa`,
 	"buy": `fO9kiPygtr0vmzsXoUxA`,
 	"btn-sm": `pJ3MTo6o133y1xTbjdEF`
@@ -1415,7 +1412,7 @@ ___CSS_LOADER_EXPORT___.push([module.id, `.cPR75kdAXDGVxib0PszB {
   border: 1px solid #ccc;
   border-radius: 1vmin;
   background-color: #fff;
-  box-shadow: 0 2vmin 4vmin rgba(0, 0, 0, 0.1); /* Using vmin for shadow */
+  box-shadow: 0 2vmin 4vmin rgba(0, 0, 0, 0.1);
 }
 
 .ap70fWT3eETsAtLlRQKl {
@@ -1450,17 +1447,15 @@ ___CSS_LOADER_EXPORT___.push([module.id, `.cPR75kdAXDGVxib0PszB {
   color: #888;
 }
 
-/* OrderDetail.module.scss */
 .V5OAbv7QFHo6WglNx0m0 {
   display: flex;
   justify-content: space-between;
-  margin-top: 10px; /* Adjust margin as needed */
+  margin-top: 10px;
 }
 
-/* Adjust the space between quantity and total price */
 .V5OAbv7QFHo6WglNx0m0 span:nth-child(2) {
-  margin-right: 10px; /* Adjust margin as needed */
-}`, "",{"version":3,"sources":["webpack://./src/components/OrderDetail/OrderDetail.module.scss"],"names":[],"mappings":"AAEA;EACE,cAAA;EACA,sBAAA;EACA,oBAAA;EACA,sBAAA;EACA,4CAAA,EAAA,0BAAA;AADF;;AAIA;EACE,aAAA;EACA,8BAAA;EACA,mBAAA;EACA,gBAAA;EACA,oBAAA;AADF;;AAIA;EACE,gBAAA,EAAA,wCAAA;EACA,kBAAA,EAAA,sCAAA;AADF;;AAIA;EACE,aAAA;EACA,8BAAA;EACA,mBAAA;EACA,kBAAA;EACA,iBAAA;AADF;;AAIA;EACE,iBAAA;EACA,OAAA;AADF;;AAIA;EACE,kBAAA;EACA,gBAAA;EACA,WAAA;AADF;;AAIA,4BAAA;AAEA;EACE,aAAA;EACA,8BAAA;EACA,gBAAA,EAAA,4BAAA;AAFF;;AAKA,sDAAA;AACA;EACE,kBAAA,EAAA,4BAAA;AAFF","sourcesContent":["// OrderDetail.module.scss\n\n.OrderDetail {\n  padding: 2vmin;\n  border: 1px solid #ccc;\n  border-radius: 1vmin;\n  background-color: #fff;\n  box-shadow: 0 2vmin 4vmin rgba(0, 0, 0, 0.1); /* Using vmin for shadow */\n}\n\n.sectionHeading {\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n  font-size: 4vmin;\n  margin-bottom: 2vmin;\n}\n\n.lineItemContainer {\n  overflow-y: auto; /* Scrollable container for line items */\n  max-height: 60vmin; /* Limiting the height for scrolling */\n}\n\n.total {\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n  font-size: 3.5vmin;\n  margin-top: 2vmin;\n}\n\n.right {\n  text-align: right;\n  flex: 1;\n}\n\n.hungry {\n  text-align: center;\n  font-size: 4vmin;\n  color: #888;\n}\n\n/* OrderDetail.module.scss */\n\n.total {\n  display: flex;\n  justify-content: space-between;\n  margin-top: 10px; /* Adjust margin as needed */\n}\n\n/* Adjust the space between quantity and total price */\n.total span:nth-child(2) {\n  margin-right: 10px; /* Adjust margin as needed */\n}\n"],"sourceRoot":""}]);
+  margin-right: 10px;
+}`, "",{"version":3,"sources":["webpack://./src/components/OrderDetail/OrderDetail.module.scss"],"names":[],"mappings":"AAAA;EACE,cAAA;EACA,sBAAA;EACA,oBAAA;EACA,sBAAA;EACA,4CAAA;AACF;;AAGA;EACE,aAAA;EACA,8BAAA;EACA,mBAAA;EACA,gBAAA;EACA,oBAAA;AAAF;;AAGA;EACE,gBAAA,EAAA,wCAAA;EACA,kBAAA,EAAA,sCAAA;AAAF;;AAGA;EACE,aAAA;EACA,8BAAA;EACA,mBAAA;EACA,kBAAA;EACA,iBAAA;AAAF;;AAGA;EACE,iBAAA;EACA,OAAA;AAAF;;AAGA;EACE,kBAAA;EACA,gBAAA;EACA,WAAA;AAAF;;AAIA;EACE,aAAA;EACA,8BAAA;EACA,gBAAA;AADF;;AAIA;EACE,kBAAA;AADF","sourcesContent":[".OrderDetail {\n  padding: 2vmin;\n  border: 1px solid #ccc;\n  border-radius: 1vmin;\n  background-color: #fff;\n  box-shadow: 0 2vmin 4vmin rgba(0, 0, 0, 0.1);\n}\n\n\n.sectionHeading {\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n  font-size: 4vmin;\n  margin-bottom: 2vmin;\n}\n\n.lineItemContainer {\n  overflow-y: auto; /* Scrollable container for line items */\n  max-height: 60vmin; /* Limiting the height for scrolling */\n}\n\n.total {\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n  font-size: 3.5vmin;\n  margin-top: 2vmin;\n}\n\n.right {\n  text-align: right;\n  flex: 1;\n}\n\n.hungry {\n  text-align: center;\n  font-size: 4vmin;\n  color: #888;\n}\n\n\n.total {\n  display: flex;\n  justify-content: space-between;\n  margin-top: 10px;\n}\n\n.total span:nth-child(2) {\n  margin-right: 10px;\n}\n"],"sourceRoot":""}]);
 // Exports
 ___CSS_LOADER_EXPORT___.locals = {
 	"OrderDetail": `cPR75kdAXDGVxib0PszB`,
@@ -1503,7 +1498,7 @@ ___CSS_LOADER_EXPORT___.push([module.id, `.l6Ner7C7O5I4V69HVVgW {
   font-size: 4vmin;
   color: #888;
   text-align: center;
-}`, "",{"version":3,"sources":["webpack://./src/components/OrderList/OrderList.module.scss"],"names":[],"mappings":"AAEA;EACI,aAAA;EACA,sBAAA;EACA,UAAA,EAAA,gCAAA;AADJ;;AAIE;EACE,gBAAA;EACA,WAAA;EACA,kBAAA;AADJ","sourcesContent":["// OrderList.module.scss\n\n.OrderList {\n    display: flex;\n    flex-direction: column;\n    gap: 2vmin; /* Spacing between order items */\n  }\n  \n  .noOrders {\n    font-size: 4vmin;\n    color: #888;\n    text-align: center;\n  }\n  "],"sourceRoot":""}]);
+}`, "",{"version":3,"sources":["webpack://./src/components/OrderList/OrderList.module.scss"],"names":[],"mappings":"AAAA;EACI,aAAA;EACA,sBAAA;EACA,UAAA,EAAA,gCAAA;AACJ;;AAEE;EACE,gBAAA;EACA,WAAA;EACA,kBAAA;AACJ","sourcesContent":[".OrderList {\n    display: flex;\n    flex-direction: column;\n    gap: 2vmin; /* Spacing between order items */\n  }\n  \n  .noOrders {\n    font-size: 4vmin;\n    color: #888;\n    text-align: center;\n  }\n  "],"sourceRoot":""}]);
 // Exports
 ___CSS_LOADER_EXPORT___.locals = {
 	"OrderList": `l6Ner7C7O5I4V69HVVgW`,
@@ -1553,7 +1548,7 @@ ___CSS_LOADER_EXPORT___.push([module.id, `.SbDKL2bctOyC5ZgA0KfW {
 .yXakx06vJAO1a5KVwp6C {
   font-size: 2.5vmin;
   color: #888; /* Color for smaller text */
-}`, "",{"version":3,"sources":["webpack://./src/components/OrderListItem/OrderListItem.module.scss"],"names":[],"mappings":"AAEA;EACI,aAAA;EACA,8BAAA;EACA,mBAAA;EACA,cAAA;EACA,sBAAA;EACA,oBAAA;EACA,eAAA;AADJ;;AAIE;EACE,yBAAA,EAAA,mCAAA;AADJ;;AAIE;EACE,iBAAA;AADJ;;AAIE;EACE,kBAAA;EACA,WAAA,EAAA,2BAAA;AADJ","sourcesContent":["// OrderListItem.module.scss\n\n.OrderListItem {\n    display: flex;\n    justify-content: space-between;\n    align-items: center;\n    padding: 2vmin;\n    border: 1px solid #ccc;\n    border-radius: 1vmin;\n    cursor: pointer;\n  }\n  \n  .selected {\n    background-color: #F1AB3A; /* Background color when selected */\n  }\n  \n  .align-rt {\n    text-align: right;\n  }\n  \n  .smaller {\n    font-size: 2.5vmin;\n    color: #888; /* Color for smaller text */\n  }\n  "],"sourceRoot":""}]);
+}`, "",{"version":3,"sources":["webpack://./src/components/OrderListItem/OrderListItem.module.scss"],"names":[],"mappings":"AAAA;EACI,aAAA;EACA,8BAAA;EACA,mBAAA;EACA,cAAA;EACA,sBAAA;EACA,oBAAA;EACA,eAAA;AACJ;;AAEE;EACE,yBAAA,EAAA,mCAAA;AACJ;;AAEE;EACE,iBAAA;AACJ;;AAEE;EACE,kBAAA;EACA,WAAA,EAAA,2BAAA;AACJ","sourcesContent":[".OrderListItem {\n    display: flex;\n    justify-content: space-between;\n    align-items: center;\n    padding: 2vmin;\n    border: 1px solid #ccc;\n    border-radius: 1vmin;\n    cursor: pointer;\n  }\n  \n  .selected {\n    background-color: #F1AB3A; /* Background color when selected */\n  }\n  \n  .align-rt {\n    text-align: right;\n  }\n  \n  .smaller {\n    font-size: 2.5vmin;\n    color: #888; /* Color for smaller text */\n  }\n  "],"sourceRoot":""}]);
 // Exports
 ___CSS_LOADER_EXPORT___.locals = {
 	"OrderListItem": `SbDKL2bctOyC5ZgA0KfW`,
@@ -1588,10 +1583,10 @@ ___CSS_LOADER_EXPORT___.push([module.id, `.x80Y_LltA5PliUAZlphe {
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: #F1AB3A; /* Light tan-1 color */
+  background-color: #F1AB3A;
   padding: 2vmin;
   border-radius: 1vmin;
-  border: 1px solid #D3C1AE; /* Tan-3 color */
+  border: 1px solid #D3C1AE;
 }
 
 .qHiYGQB1ZEMvrGOQoBrO {
@@ -1603,8 +1598,8 @@ button {
   margin-top: 1vmin;
   padding: 1vmin 2vmin;
   font-size: 2.5vmin;
-  background-color: #BB0000; /* Dark red color */
-  color: #FFFFFF; /* White color */
+  background-color: #BB0000;
+  color: #FFFFFF;
   border: none;
   border-radius: 0.5vmin;
   cursor: pointer;
@@ -1612,7 +1607,7 @@ button {
 
 button:hover {
   background-color: #FF6347; /* Lighter red color on hover */
-}`, "",{"version":3,"sources":["webpack://./src/components/UserLogOut/UserLogOut.module.scss"],"names":[],"mappings":"AAEA;EACE,aAAA;EACA,sBAAA;EACA,mBAAA;EACA,yBAAA,EAAA,sBAAA;EACA,cAAA;EACA,oBAAA;EACA,yBAAA,EAAA,gBAAA;AADF;;AAIA;EACE,iBAAA;EACA,kBAAA;AADF;;AAIA;EACE,iBAAA;EACA,oBAAA;EACA,kBAAA;EACA,yBAAA,EAAA,mBAAA;EACA,cAAA,EAAA,gBAAA;EACA,YAAA;EACA,sBAAA;EACA,eAAA;AADF;;AAIA;EACE,yBAAA,EAAA,+BAAA;AADF","sourcesContent":["// UserLogOut.module.scss\n\n.UserLogOut {\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n  background-color: #F1AB3A; /* Light tan-1 color */\n  padding: 2vmin;\n  border-radius: 1vmin;\n  border: 1px solid #D3C1AE; /* Tan-3 color */\n}\n\n.email {\n  margin-top: 1vmin;\n  font-size: 2.5vmin;\n}\n\nbutton {\n  margin-top: 1vmin;\n  padding: 1vmin 2vmin;\n  font-size: 2.5vmin;\n  background-color: #BB0000; /* Dark red color */\n  color: #FFFFFF; /* White color */\n  border: none;\n  border-radius: 0.5vmin;\n  cursor: pointer;\n}\n\nbutton:hover {\n  background-color: #FF6347; /* Lighter red color on hover */\n}\n"],"sourceRoot":""}]);
+}`, "",{"version":3,"sources":["webpack://./src/components/UserLogOut/UserLogOut.module.scss"],"names":[],"mappings":"AAAA;EACE,aAAA;EACA,sBAAA;EACA,mBAAA;EACA,yBAAA;EACA,cAAA;EACA,oBAAA;EACA,yBAAA;AACF;;AAEA;EACE,iBAAA;EACA,kBAAA;AACF;;AAEA;EACE,iBAAA;EACA,oBAAA;EACA,kBAAA;EACA,yBAAA;EACA,cAAA;EACA,YAAA;EACA,sBAAA;EACA,eAAA;AACF;;AAEA;EACE,yBAAA,EAAA,+BAAA;AACF","sourcesContent":[".UserLogOut {\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n  background-color: #F1AB3A;\n  padding: 2vmin;\n  border-radius: 1vmin;\n  border: 1px solid #D3C1AE;\n}\n\n.email {\n  margin-top: 1vmin;\n  font-size: 2.5vmin;\n}\n\nbutton {\n  margin-top: 1vmin;\n  padding: 1vmin 2vmin;\n  font-size: 2.5vmin;\n  background-color: #BB0000;\n  color: #FFFFFF;\n  border: none;\n  border-radius: 0.5vmin;\n  cursor: pointer;\n}\n\nbutton:hover {\n  background-color: #FF6347; /* Lighter red color on hover */\n}\n"],"sourceRoot":""}]);
 // Exports
 ___CSS_LOADER_EXPORT___.locals = {
 	"UserLogOut": `x80Y_LltA5PliUAZlphe`,
@@ -1658,16 +1653,16 @@ ___CSS_LOADER_EXPORT___.push([module.id, `.RygkJgZmBHTETlLP3C3i {
 }
 
 h3 {
-  font-size: 4vmin; /* Adjust font size */
-  color: #333; /* Set text color */
-  margin-bottom: 2vmin; /* Add margin at the bottom */
-  text-transform: uppercase; /* Convert text to uppercase */
-  cursor: pointer; /* Change cursor to pointer on hover */
+  font-size: 4vmin;
+  color: #333;
+  margin-bottom: 2vmin;
+  text-transform: uppercase;
+  cursor: pointer;
 }
 
 h3:hover {
   color: #F1AB3A;
-}`, "",{"version":3,"sources":["webpack://./src/pages/AuthPage/AuthPage.module.scss"],"names":[],"mappings":"AAAA;EACI,YAAA;EACA,aAAA;EACA,6BAAA;EACA,mBAAA;EACA,8BAAA;EACA,oBAAA;AACJ;;AAEE;EACE,iBAAA;EACA,kBAAA;EACA,wBAAA;EACA,eAAA;AACJ;;AACE;EACE,gBAAA,EAAA,qBAAA;EACA,WAAA,EAAA,mBAAA;EACA,oBAAA,EAAA,6BAAA;EACA,yBAAA,EAAA,8BAAA;EACA,eAAA,EAAA,sCAAA;AAEJ;;AACE;EACE,cAAA;AAEJ","sourcesContent":[".AuthPage {\n    height: 100%;\n    display: flex;\n    justify-content: space-evenly;\n    align-items: center;\n    background-color: var(--white);\n    border-radius: 2vmin;\n  }\n  \n  .AuthPage h3 {\n    margin-top: 4vmin;\n    text-align: center;\n    color: var(--text-light);\n    cursor: pointer;\n  }\n  h3 {\n    font-size: 4vmin; /* Adjust font size */\n    color: #333; /* Set text color */\n    margin-bottom: 2vmin; /* Add margin at the bottom */\n    text-transform: uppercase; /* Convert text to uppercase */\n    cursor: pointer; /* Change cursor to pointer on hover */\n  }\n\n  h3:hover {\n    color: #F1AB3A;\n  }"],"sourceRoot":""}]);
+}`, "",{"version":3,"sources":["webpack://./src/pages/AuthPage/AuthPage.module.scss"],"names":[],"mappings":"AAAA;EACI,YAAA;EACA,aAAA;EACA,6BAAA;EACA,mBAAA;EACA,8BAAA;EACA,oBAAA;AACJ;;AAEE;EACE,iBAAA;EACA,kBAAA;EACA,wBAAA;EACA,eAAA;AACJ;;AACE;EACE,gBAAA;EACA,WAAA;EACA,oBAAA;EACA,yBAAA;EACA,eAAA;AAEJ;;AACE;EACE,cAAA;AAEJ","sourcesContent":[".AuthPage {\n    height: 100%;\n    display: flex;\n    justify-content: space-evenly;\n    align-items: center;\n    background-color: var(--white);\n    border-radius: 2vmin;\n  }\n  \n  .AuthPage h3 {\n    margin-top: 4vmin;\n    text-align: center;\n    color: var(--text-light);\n    cursor: pointer;\n  }\n  h3 {\n    font-size: 4vmin;\n    color: #333;\n    margin-bottom: 2vmin;\n    text-transform: uppercase;\n    cursor: pointer;\n  }\n\n  h3:hover {\n    color: #F1AB3A;\n  }"],"sourceRoot":""}]);
 // Exports
 ___CSS_LOADER_EXPORT___.locals = {
 	"AuthPage": `RygkJgZmBHTETlLP3C3i`
@@ -1696,9 +1691,10 @@ ___CSS_LOADER_EXPORT___.locals = {
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default()((_node_modules_css_loader_dist_runtime_sourceMaps_js__WEBPACK_IMPORTED_MODULE_0___default()));
 // Module
 ___CSS_LOADER_EXPORT___.push([module.id, `.RZqTJBeYN7RXwcHgPFys {
+  position: relative;
   height: 100%;
   display: grid;
-  grid-template-columns: 1fr 3fr 2fr; /* Adjust column sizes */
+  grid-template-columns: 1fr 3fr 2fr;
   grid-template-rows: 1fr;
   background-color: var(--white);
   border-radius: 2vmin;
@@ -1710,11 +1706,11 @@ ___CSS_LOADER_EXPORT___.push([module.id, `.RZqTJBeYN7RXwcHgPFys {
   justify-content: flex-start; /* Align items at the top */
   align-items: center;
   height: 100%;
-  margin: 1.5vmin 2vmin; /* Adjust margin */
+  margin: 1.5vmin 2vmin;
 }
 
 .kmHG526vtTXR9683wm4_ {
-  margin-bottom: 20px; /* Increase space below the Logo */
+  margin-bottom: 20px;
 }
 
 .c2UhpdxNlhfAOgMWuxPV {
@@ -1735,26 +1731,24 @@ ___CSS_LOADER_EXPORT___.push([module.id, `.RZqTJBeYN7RXwcHgPFys {
 
 .dDOM7pAvXPagfe9W_VuZ a {
   font-size: 1.2em;
-  padding: 10px 20px; /* Adjust padding */
+  padding: 10px 20px;
 }
 
 .TUf2lpQIhs_bxoNUosZS {
   margin-top: 20px;
-  margin-bottom: 20px; /* Adjust margin */
+  margin-bottom: 20px;
 }
 
 .sj0kLBAc3YWLzzqUGC6U {
-  padding: 20px; /* Add padding to OrderDetail */
+  padding: 20px;
   overflow-y: auto; /* Enable vertical scrolling if needed */
 }
 
 .U87jXgubxzEgLFlASDJg {
-  position: absolute;
-  top: 10px; /* Adjust the top distance as needed */
-  right: 10px; /* Adjust the right distance as needed */
-  padding: 10px 20px; /* Adjust the padding as needed */
-  font-size: 1.2em; /* Adjust the font size as needed */
-}`, "",{"version":3,"sources":["webpack://./src/pages/NewOrderPage/NewOrderPage.module.scss"],"names":[],"mappings":"AAAA;EACE,YAAA;EACA,aAAA;EACA,kCAAA,EAAA,wBAAA;EACA,uBAAA;EACA,8BAAA;EACA,oBAAA;AACF;;AAEA;EACE,aAAA;EACA,sBAAA;EACA,2BAAA,EAAA,2BAAA;EACA,mBAAA;EACA,YAAA;EACA,qBAAA,EAAA,kBAAA;AACF;;AAEA;EACE,mBAAA,EAAA,kCAAA;AACF;;AAEA;EACE,gBAAA;EACA,MAAA;EACA,YAAA;EACA,gBAAA;EACA,8BAAA;EACA,mCAAA;EACA,aAAA;EACA,UAAA;AACF;;AAEA;EACE,gBAAA;EACA,mBAAA;AACF;;AAEA;EACE,gBAAA;EACA,kBAAA,EAAA,mBAAA;AACF;;AAEA;EACE,gBAAA;EACA,mBAAA,EAAA,kBAAA;AACF;;AAEA;EACE,aAAA,EAAA,+BAAA;EACA,gBAAA,EAAA,wCAAA;AACF;;AAEA;EACE,kBAAA;EACA,SAAA,EAAA,sCAAA;EACA,WAAA,EAAA,wCAAA;EACA,kBAAA,EAAA,iCAAA;EACA,gBAAA,EAAA,mCAAA;AACF","sourcesContent":[".NewOrderPage {\n  height: 100%;\n  display: grid;\n  grid-template-columns: 1fr 3fr 2fr; /* Adjust column sizes */\n  grid-template-rows: 1fr;\n  background-color: var(--white);\n  border-radius: 2vmin;\n}\n\n.NewOrderPage aside {\n  display: flex;\n  flex-direction: column;\n  justify-content: flex-start; /* Align items at the top */\n  align-items: center;\n  height: 100%;\n  margin: 1.5vmin 2vmin; /* Adjust margin */\n}\n\n.Logo {\n  margin-bottom: 20px; /* Increase space below the Logo */\n}\n\n.CategoryListContainer {\n  position: sticky;\n  top: 0;\n  width: 200px;\n  overflow-y: auto;\n  background-color: var(--white);\n  border-right: 1px solid var(--gray);\n  padding: 20px;\n  z-index: 1;\n}\n\n.LinkContainer {\n  margin-top: auto;\n  margin-bottom: 20px;\n}\n\n.LinkContainer a {\n  font-size: 1.2em;\n  padding: 10px 20px; /* Adjust padding */\n}\n\n.UserLogOutContainer {\n  margin-top: 20px;\n  margin-bottom: 20px; /* Adjust margin */\n}\n\n.OrderDetail {\n  padding: 20px; /* Add padding to OrderDetail */\n  overflow-y: auto; /* Enable vertical scrolling if needed */\n}\n\n.toggleButton {\n  position: absolute;\n  top: 10px; /* Adjust the top distance as needed */\n  right: 10px; /* Adjust the right distance as needed */\n  padding: 10px 20px; /* Adjust the padding as needed */\n  font-size: 1.2em; /* Adjust the font size as needed */\n}"],"sourceRoot":""}]);
+  position: fixed;
+  top: 10px;
+  right: 10px;
+}`, "",{"version":3,"sources":["webpack://./src/pages/NewOrderPage/NewOrderPage.module.scss"],"names":[],"mappings":"AAAA;EACE,kBAAA;EACA,YAAA;EACA,aAAA;EACA,kCAAA;EACA,uBAAA;EACA,8BAAA;EACA,oBAAA;AACF;;AAEA;EACE,aAAA;EACA,sBAAA;EACA,2BAAA,EAAA,2BAAA;EACA,mBAAA;EACA,YAAA;EACA,qBAAA;AACF;;AAEA;EACE,mBAAA;AACF;;AAEA;EACE,gBAAA;EACA,MAAA;EACA,YAAA;EACA,gBAAA;EACA,8BAAA;EACA,mCAAA;EACA,aAAA;EACA,UAAA;AACF;;AAEA;EACE,gBAAA;EACA,mBAAA;AACF;;AAEA;EACE,gBAAA;EACA,kBAAA;AACF;;AAEA;EACE,gBAAA;EACA,mBAAA;AACF;;AAEA;EACE,aAAA;EACA,gBAAA,EAAA,wCAAA;AACF;;AAEA;EACE,eAAA;EACA,SAAA;EACA,WAAA;AACF","sourcesContent":[".NewOrderPage {\n  position: relative;\n  height: 100%;\n  display: grid;\n  grid-template-columns: 1fr 3fr 2fr;\n  grid-template-rows: 1fr;\n  background-color: var(--white);\n  border-radius: 2vmin;\n}\n\n.NewOrderPage aside {\n  display: flex;\n  flex-direction: column;\n  justify-content: flex-start; /* Align items at the top */\n  align-items: center;\n  height: 100%;\n  margin: 1.5vmin 2vmin;\n}\n\n.Logo {\n  margin-bottom: 20px;\n}\n\n.CategoryListContainer {\n  position: sticky;\n  top: 0;\n  width: 200px;\n  overflow-y: auto;\n  background-color: var(--white);\n  border-right: 1px solid var(--gray);\n  padding: 20px;\n  z-index: 1;\n}\n\n.LinkContainer {\n  margin-top: auto;\n  margin-bottom: 20px;\n}\n\n.LinkContainer a {\n  font-size: 1.2em;\n  padding: 10px 20px;\n}\n\n.UserLogOutContainer {\n  margin-top: 20px;\n  margin-bottom: 20px;\n}\n\n.OrderDetail {\n  padding: 20px; \n  overflow-y: auto; /* Enable vertical scrolling if needed */\n}\n\n.toggleButton {\n  position: fixed;\n  top: 10px;\n  right: 10px;\n}\n"],"sourceRoot":""}]);
 // Exports
 ___CSS_LOADER_EXPORT___.locals = {
 	"NewOrderPage": `RZqTJBeYN7RXwcHgPFys`,

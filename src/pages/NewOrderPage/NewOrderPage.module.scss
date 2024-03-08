@@ -1,7 +1,8 @@
 .NewOrderPage {
+  position: relative;
   height: 100%;
   display: grid;
-  grid-template-columns: 1fr 3fr 2fr; /* Adjust column sizes */
+  grid-template-columns: 1fr 3fr 2fr;
   grid-template-rows: 1fr;
   background-color: var(--white);
   border-radius: 2vmin;
@@ -13,11 +14,11 @@
   justify-content: flex-start; /* Align items at the top */
   align-items: center;
   height: 100%;
-  margin: 1.5vmin 2vmin; /* Adjust margin */
+  margin: 1.5vmin 2vmin;
 }
 
 .Logo {
-  margin-bottom: 20px; /* Increase space below the Logo */
+  margin-bottom: 20px;
 }
 
 .CategoryListContainer {
@@ -38,23 +39,21 @@
 
 .LinkContainer a {
   font-size: 1.2em;
-  padding: 10px 20px; /* Adjust padding */
+  padding: 10px 20px;
 }
 
 .UserLogOutContainer {
   margin-top: 20px;
-  margin-bottom: 20px; /* Adjust margin */
+  margin-bottom: 20px;
 }
 
 .OrderDetail {
-  padding: 20px; /* Add padding to OrderDetail */
+  padding: 20px; 
   overflow-y: auto; /* Enable vertical scrolling if needed */
 }
 
 .toggleButton {
-  position: absolute;
-  top: 10px; /* Adjust the top distance as needed */
-  right: 10px; /* Adjust the right distance as needed */
-  padding: 10px 20px; /* Adjust the padding as needed */
-  font-size: 1.2em; /* Adjust the font size as needed */
+  position: fixed;
+  top: 10px;
+  right: 10px;
 }

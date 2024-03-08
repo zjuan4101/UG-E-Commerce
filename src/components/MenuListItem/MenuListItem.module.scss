@@ -1,17 +1,11 @@
-/* MenuListItem.module.scss */
-
 .MenuListItem {
   display: flex;
-  flex-direction: column; /* Arrange items in a column */
+  flex-direction: column;
   align-items: center;
-  padding: 2vmin; /* Increased padding */
-  border-bottom: 0.1vmin solid #ccc; /* Add a border bottom for separation */
+  padding: 2vmin;
+  border-bottom: 0.1vmin solid #ccc;
 }
 
-.emoji {
-  font-size: 3.5vmin; /* Adjusted emoji font size */
-  margin-bottom: 2vmin; /* Increased margin below emoji */
-}
 
 .name {
   font-size: 3vmin; /* Adjusted name font size */
