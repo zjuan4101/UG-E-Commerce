@@ -92,4 +92,4 @@ npm start
 Purchasing Functionality: Currently, the site does not support the ability to make purchases. While you can browse through merchandise and add items to your cart, the checkout and payment processes are not yet implemented. I am actively working on adding this feature in future updates.
 
 ## Deployment
-The application is deployed and accessible online. You can visit the Unknown Guardians E-Commerce Site by following this link: [ug.juanzelayacastillo.me]
+The application is deployed and accessible online. You can visit the Unknown Guardians E-Commerce Site by following this link: ug.juanzelayacastillo.me
