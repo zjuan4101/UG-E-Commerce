@@ -3,24 +3,33 @@
  Frontend:
 
 React - A JavaScript library for building user interfaces.
+
 React Router - Declarative routing for React.js.
+
 SCSS - A popular CSS extension language.
+
 Backend:
 
 Node.js - A JavaScript runtime built on Chrome's V8 JavaScript engine.
+
 Express - A minimal and flexible Node.js web application framework.
+
 MongoDB - A NoSQL database used for storing data.
 Database:
 
 Mongoose - An elegant MongoDB object modeling tool.
+
 Deployment:
 
 Digital Ocean - A cloud infrastructure provider used for deployment.
 Other Tools and Libraries:
 
 Webpack - A module bundler for JavaScript applications.
+
 Babel - A JavaScript compiler.
+
 Gulp - A task runner that automates repetitive tasks in the development workflow, such as minification, compilation, and more.
+
 Git - A distributed version control system.
  
  ## Introduction
