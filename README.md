@@ -1,68 +1,86 @@
-# Big Poppa Code React Starter Kit
-This Starter Kit is being created for New Web Developers that want to get started with react
+# Unknown Guardians MERN Stack E-Commerce
+ ## Technologies Used
+ Frontend:
 
-Most people use a CLI Tool like Vue-Cli or Create React App and no idea what these things are doing
+React - A JavaScript library for building user interfaces.
+React Router - Declarative routing for React.js.
+SCSS - A popular CSS extension language.
+Backend:
 
-The goal of this is for it to be a tool that let's you learn JS at a new level because you have access to
-everything under the hood and no opinionated set up
+Node.js - A JavaScript runtime built on Chrome's V8 JavaScript engine.
+Express - A minimal and flexible Node.js web application framework.
+MongoDB - A NoSQL database used for storing data.
+Database:
 
-I will base all my tutorials on this Starter Kit.
+Mongoose - An elegant MongoDB object modeling tool.
+Deployment:
 
-# Who Am I?
+Digital Ocean - A cloud infrastructure provider used for deployment.
+Other Tools and Libraries:
 
-![arthurbernierjr.com](http://progressandfortune.com/smac_images/profile.jpg)
+Webpack - A module bundler for JavaScript applications.
+Babel - A JavaScript compiler.
+Gulp - A task runner that automates repetitive tasks in the development workflow, such as minification, compilation, and more.
+Git - A distributed version control system.
+ 
+ ## Introduction
+Welcome to the Unknown Guardians E-Commerce Site! This project is a MERN stack E-commerce platform designed for the Esports team, Unknown Guardians.
 
-I am Arthur Bernier Jr. I work as freelance fullstack web developer and attraction marketing consultant specializing in supporting e-commerce brands,
-subscription box sites, social activists, religious/non-profit leaders and creative entrepreneurs(i.e. barbers, artists, musicians, stylists, models and photographers).
-I have a passion for helping entrepreneurs reach their perfect audience and helping you communicate to that audience in a way that makes them know, like and trust you. I also am a Full-Time Instructor at General Assembly as well as a Software Engineer at Blavity Inc.
+## Prerequisites
+Make sure you have the following installed on your machine:
 
+- Node.js
+- npm (Node Package Manager)
 
-# My Favorite Online Instructors
-
-[__Colt Steele__](https://www.youtube.com/channel/UCrqAGUPPMOdo0jfQ6grikZw)
-
-[__Brad Traversy__](https://www.youtube.com/channel/UC29ju8bIPH5as8OGnQzwJyA)
-
-[__Jose Santos Garcia__](https://www.youtube.com/channel/UC46wWUso9H5KPQcoL9iE3Ug)
-
-[__Stephen Grider__](https://www.youtube.com/channel/UCQCaS3atWyNHEy5PkDXdpNg/)
-
-## Steps
-
-**Install Gulp Globally**
-```bash
-npm i -g gulp-cli
+## Installation
+1. Clone the repository:
+```
+git clone git@github.com:zjuan4101/UG-E-Commerce.git
+```
+2. Navigate to the project directory:
+```
+cd UG-E-Commerce
+```
+3. Install dependencies:
+```
+npm i
 ```
 
-**Start the dev server**
-```bash
+## Configuration
+Create a .env file in the root directory of the project.
+
+Add the following environment variables to the .env file:
+```
+PORT=3000
+MONGO_URI=your-mongodb-connection-string
+SECRET=your-secret-key
+```
+Replace your-mongodb-connection-string with your MongoDB connection string and your-secret-key with your JWT secret key.
+You can create a simple SHA56 hash at https://emn178.github.io/online-tools/sha256.html
+
+## Running the Seed File
+To populate the application with items, you can run the seed file using the following command:
+```
+npm run seed
+```
+This command will execute the seed script defined in your package.json file and populate your database with items.
+
+
+## Starting the App in Dev Mode
+ To start the application in development mode, run the following command:
+```
 npm run dev
 ```
-### or
-```bash
-yarn dev
-```
+This command will start the development server, and you can view the app in your browser at `http://localhost:3000.`
 
-**Start the dev server with proxy**
-```bash
-npm run proxy
+## Usage
+Start the server:
 ```
-
-**Build files for production**
-```bash
-yarn build
-```
-### or
-
-```bash
-npm run build
-```
-
-**Deploy for production script**
-```bash
 npm start
 ```
-### or
-```bash
-yarn start
-```
+
+## Known Limitations
+Purchasing Functionality: Currently, the site does not support the ability to make purchases. While you can browse through merchandise and add items to your cart, the checkout and payment processes are not yet implemented. I am actively working on adding this feature in future updates.
+
+## Deployment
+The application is deployed and accessible online. You can visit the Unknown Guardians E-Commerce Site by following this link: [ug.juanzelayacastillo.me]

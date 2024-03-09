@@ -291,8 +291,6 @@ function OrderDetail(_ref) {
     className: _OrderDetail_module_scss__WEBPACK_IMPORTED_MODULE_1__["default"].OrderDetail,
     id: "OrderDetail"
   }, /*#__PURE__*/React.createElement("div", {
-    class: "background-image"
-  }), /*#__PURE__*/React.createElement("div", {
     className: _OrderDetail_module_scss__WEBPACK_IMPORTED_MODULE_1__["default"].sectionHeading,
     id: "content"
   }, order.isPaid ? /*#__PURE__*/React.createElement("span", null, "ORDER ", /*#__PURE__*/React.createElement("span", {
@@ -518,7 +516,8 @@ function UserLogOut(_ref) {
     className: _UserLogOut_module_scss__WEBPACK_IMPORTED_MODULE_0__["default"].email
   }, user.email), /*#__PURE__*/React.createElement("button", {
     className: "btn-sm",
-    onClick: handleLogOut
+    onClick: handleLogOut,
+    id: "logoutbutton"
   }, "LOG OUT"));
 }
 
@@ -671,17 +670,19 @@ function NewOrderPage(_ref) {
   }, /*#__PURE__*/React.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_10__.Link, {
     to: "/orders",
     className: "button btn-sm"
-  }, "PREVIOUS ORDERS"), /*#__PURE__*/React.createElement("button", {
-    onClick: () => setShowOrderDetail(true),
-    className: "button btn-sm toggleButton"
-  }, "Show Cart")), /*#__PURE__*/React.createElement("div", {
+  }, "PREVIOUS ORDERS")), /*#__PURE__*/React.createElement("div", {
     className: _NewOrderPage_module_scss__WEBPACK_IMPORTED_MODULE_1__["default"].UserLogOutContainer
   }, /*#__PURE__*/React.createElement(_components_UserLogOut_UserLogOut__WEBPACK_IMPORTED_MODULE_6__["default"], {
     user: user,
     setUser: setUser
-  }))), /*#__PURE__*/React.createElement(_components_MenuList_MenuList__WEBPACK_IMPORTED_MODULE_3__["default"], {
+  })), /*#__PURE__*/React.createElement("button", {
+    onClick: () => setShowOrderDetail(true),
+    className: "button btn-sm ".concat(_NewOrderPage_module_scss__WEBPACK_IMPORTED_MODULE_1__["default"].toggleButton)
+  }, "Show Cart")), /*#__PURE__*/React.createElement(_components_MenuList_MenuList__WEBPACK_IMPORTED_MODULE_3__["default"], {
     menuItems: menuItems.filter(item => item.category.find(cat => cat.name === activeCat)),
     handleAddToOrder: handleAddToOrder
+  }), /*#__PURE__*/React.createElement("div", {
+    class: "background-image"
   }), showOrderDetail && /*#__PURE__*/React.createElement(_components_OrderDetail_OrderDetail__WEBPACK_IMPORTED_MODULE_5__["default"], {
     order: cart,
     handleChangeQty: handleChangeQty,
@@ -1698,12 +1699,13 @@ ___CSS_LOADER_EXPORT___.push([module.id, `.RZqTJBeYN7RXwcHgPFys {
   grid-template-rows: 1fr;
   background-color: var(--white);
   border-radius: 2vmin;
+  overflow: hidden;
 }
 
 .RZqTJBeYN7RXwcHgPFys aside {
   display: flex;
   flex-direction: column;
-  justify-content: flex-start; /* Align items at the top */
+  justify-content: flex-start;
   align-items: center;
   height: 100%;
   margin: 1.5vmin 2vmin;
@@ -1748,7 +1750,7 @@ ___CSS_LOADER_EXPORT___.push([module.id, `.RZqTJBeYN7RXwcHgPFys {
   position: fixed;
   top: 10px;
   right: 10px;
-}`, "",{"version":3,"sources":["webpack://./src/pages/NewOrderPage/NewOrderPage.module.scss"],"names":[],"mappings":"AAAA;EACE,kBAAA;EACA,YAAA;EACA,aAAA;EACA,kCAAA;EACA,uBAAA;EACA,8BAAA;EACA,oBAAA;AACF;;AAEA;EACE,aAAA;EACA,sBAAA;EACA,2BAAA,EAAA,2BAAA;EACA,mBAAA;EACA,YAAA;EACA,qBAAA;AACF;;AAEA;EACE,mBAAA;AACF;;AAEA;EACE,gBAAA;EACA,MAAA;EACA,YAAA;EACA,gBAAA;EACA,8BAAA;EACA,mCAAA;EACA,aAAA;EACA,UAAA;AACF;;AAEA;EACE,gBAAA;EACA,mBAAA;AACF;;AAEA;EACE,gBAAA;EACA,kBAAA;AACF;;AAEA;EACE,gBAAA;EACA,mBAAA;AACF;;AAEA;EACE,aAAA;EACA,gBAAA,EAAA,wCAAA;AACF;;AAEA;EACE,eAAA;EACA,SAAA;EACA,WAAA;AACF","sourcesContent":[".NewOrderPage {\n  position: relative;\n  height: 100%;\n  display: grid;\n  grid-template-columns: 1fr 3fr 2fr;\n  grid-template-rows: 1fr;\n  background-color: var(--white);\n  border-radius: 2vmin;\n}\n\n.NewOrderPage aside {\n  display: flex;\n  flex-direction: column;\n  justify-content: flex-start; /* Align items at the top */\n  align-items: center;\n  height: 100%;\n  margin: 1.5vmin 2vmin;\n}\n\n.Logo {\n  margin-bottom: 20px;\n}\n\n.CategoryListContainer {\n  position: sticky;\n  top: 0;\n  width: 200px;\n  overflow-y: auto;\n  background-color: var(--white);\n  border-right: 1px solid var(--gray);\n  padding: 20px;\n  z-index: 1;\n}\n\n.LinkContainer {\n  margin-top: auto;\n  margin-bottom: 20px;\n}\n\n.LinkContainer a {\n  font-size: 1.2em;\n  padding: 10px 20px;\n}\n\n.UserLogOutContainer {\n  margin-top: 20px;\n  margin-bottom: 20px;\n}\n\n.OrderDetail {\n  padding: 20px; \n  overflow-y: auto; /* Enable vertical scrolling if needed */\n}\n\n.toggleButton {\n  position: fixed;\n  top: 10px;\n  right: 10px;\n}\n"],"sourceRoot":""}]);
+}`, "",{"version":3,"sources":["webpack://./src/pages/NewOrderPage/NewOrderPage.module.scss"],"names":[],"mappings":"AAAA;EACE,kBAAA;EACA,YAAA;EACA,aAAA;EACA,kCAAA;EACA,uBAAA;EACA,8BAAA;EACA,oBAAA;EACA,gBAAA;AACF;;AAEA;EACE,aAAA;EACA,sBAAA;EACA,2BAAA;EACA,mBAAA;EACA,YAAA;EACA,qBAAA;AACF;;AAEA;EACE,mBAAA;AACF;;AAEA;EACE,gBAAA;EACA,MAAA;EACA,YAAA;EACA,gBAAA;EACA,8BAAA;EACA,mCAAA;EACA,aAAA;EACA,UAAA;AACF;;AAEA;EACE,gBAAA;EACA,mBAAA;AACF;;AAEA;EACE,gBAAA;EACA,kBAAA;AACF;;AAEA;EACE,gBAAA;EACA,mBAAA;AACF;;AAEA;EACE,aAAA;EACA,gBAAA,EAAA,wCAAA;AACF;;AAEA;EACE,eAAA;EACA,SAAA;EACA,WAAA;AACF","sourcesContent":[".NewOrderPage {\n  position: relative;\n  height: 100%;\n  display: grid;\n  grid-template-columns: 1fr 3fr 2fr;\n  grid-template-rows: 1fr;\n  background-color: var(--white);\n  border-radius: 2vmin;\n  overflow: hidden;\n}\n\n.NewOrderPage aside {\n  display: flex;\n  flex-direction: column;\n  justify-content: flex-start;\n  align-items: center;\n  height: 100%;\n  margin: 1.5vmin 2vmin;\n}\n\n.Logo {\n  margin-bottom: 20px;\n}\n\n.CategoryListContainer {\n  position: sticky;\n  top: 0;\n  width: 200px;\n  overflow-y: auto;\n  background-color: var(--white);\n  border-right: 1px solid var(--gray);\n  padding: 20px;\n  z-index: 1;\n}\n\n.LinkContainer {\n  margin-top: auto;\n  margin-bottom: 20px;\n}\n\n.LinkContainer a {\n  font-size: 1.2em;\n  padding: 10px 20px;\n}\n\n.UserLogOutContainer {\n  margin-top: 20px;\n  margin-bottom: 20px;\n}\n\n.OrderDetail {\n  padding: 20px; \n  overflow-y: auto; /* Enable vertical scrolling if needed */\n}\n\n.toggleButton {\n  position: fixed;\n  top: 10px;\n  right: 10px;\n}\n"],"sourceRoot":""}]);
 // Exports
 ___CSS_LOADER_EXPORT___.locals = {
 	"NewOrderPage": `RZqTJBeYN7RXwcHgPFys`,

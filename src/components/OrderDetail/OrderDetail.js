@@ -16,7 +16,6 @@ export default function OrderDetail({ order, handleChangeQty, handleCheckout, hi
 
   return (
     <div className={styles.OrderDetail} id="OrderDetail">
-      <div class="background-image"></div>
       <div className={styles.sectionHeading} id="content">
         {order.isPaid ? (
           <span>ORDER <span className="smaller">{order.orderId}</span></span>

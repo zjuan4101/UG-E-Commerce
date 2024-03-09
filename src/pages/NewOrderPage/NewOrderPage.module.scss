@@ -6,12 +6,13 @@
   grid-template-rows: 1fr;
   background-color: var(--white);
   border-radius: 2vmin;
+  overflow: hidden;
 }
 
 .NewOrderPage aside {
   display: flex;
   flex-direction: column;
-  justify-content: flex-start; /* Align items at the top */
+  justify-content: flex-start;
   align-items: center;
   height: 100%;
   margin: 1.5vmin 2vmin;
